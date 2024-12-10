@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şifalı Bitkiler</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Şifalı Bitkiler ve Alternatif Tıp</h1>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main>
+        <!-- Ana Sayfa -->
+        <section class="page" id="home">
+            <h2>Hoş Geldiniz</h2>
+            <p>Amacımız, doğal yollarla sağlığınıza destek olmaktır. Alternatif tıbbın zengin dünyasına hoş geldiniz!</p>
+            <button onclick="showPage('treatment')">Tedaviye Geç</button>
+            <button onclick="showPage('database')">Veritabanına Geç</button>
+        </section>
+
+        <!-- Tedavi Sayfası -->
+        <section class="page" id="treatment">
+            <h2>Tedavi Seçimi</h2>
+            <form>
+                <label for="disease">Hastalığınızı Seçin:</label>
+                <select id="disease">
+                    <option value="headache">Baş Ağrısı</option>
+                    <option value="cough">Öksürük</option>
+                    <option value="fatigue">Yorgunluk</option>
+                </select>
+
+                <p>Tedavi Türü:</p>
+                <label>
+                    <input type="checkbox" name="treatment-type" value="herb"> Bitki
+                </label>
+                <label>
+                    <input type="checkbox" name="treatment-type" value="mix"> Karışım
+                </label>
+                <br><br>
+                <button type="button" onclick="showSuggestions()">Öneri Al</button>
+            </form>
+            <div id="results" style="margin-top: 20px; font-size: 18px; color: #333;">
+                <!-- Öneriler burada gösterilecek -->
+            </div>
+            <button onclick="showPage('home')">Ana Sayfa</button>
+        </section>
+
+        <!-- Veritabanı Sayfası -->
+        <section class="page" id="database">
+            <h2>Veritabanı</h2>
+            <p>Hangi bitki ne işe yarar, hangi karışımlar hangi rahatsızlıklarda kullanılır öğrenmek için aşağıdaki listeye göz atın:</p>
+            <ul>
+                <li>Isırgan Otu: Kan temizleyici özelliği vardır.</li>
+                <li>Ballı Limon Karışımı: Öksürük için idealdir.</li>
+                <li>Papatya Çayı: Sakinleştirici etkisi bulunur.</li>
+            </ul>
+            <button onclick="showPage('home')">Ana Sayfa</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Şifalı Bitkiler ve Alternatif Tıp</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

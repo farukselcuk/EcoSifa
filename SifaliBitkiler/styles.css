@@ -1,0 +1,142 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f9f4;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Sayfa yüksekliğini tamamen kapsar */
+    margin: 0;
+}
+
+/* Sayfa düzeni */
+.page {
+    display: block; /* Sayfa içeriği görünür yapılacak */
+    max-width: 800px; /* İçeriğin genişliği sınırlı */
+    padding: 30px;
+    background-color: #fff; /* Arka plan beyaz */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gölgeleme efekti */
+    width: 100%;
+}
+
+/* Header (Eski Format) */
+header {
+    background-color: #388e3c; /* Yeşil tonunda */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 0; /* Yuvarlatılmış köşeler kaldırıldı */
+    text-align: left; /* Sol hizalama */
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    text-align: center;
+}
+
+/* Şifalı Bitkiler ve Alternatif Tıp Başlığı */
+header h2 {
+    font-size: 2.5rem;
+    margin: 20px 0 10px 0;
+    text-align: center;
+    color: #fff;
+}
+
+/* Ana İçerik */
+main {
+    margin-top: 100px; /* Header'ın üst kısmına boşluk bırak */
+}
+
+/* Başlıklar */
+h2, h3 {
+    color: #388e3c; /* Yeşil tonunda */
+    margin-bottom: 10px;
+}
+
+/* Butonlar */
+button {
+    background-color: #4caf50; /* Yeşil tonunda */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-bottom: 15px; /* Butonlarla içerik arasına boşluk ekle */
+}
+
+button:hover {
+    background-color: #45a049; /* Hover yeşil rengi */
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Form alanları */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Seçim kutusu */
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Liste */
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    background-color: #e8f5e9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #388e3c; /* Yeşil tonunda */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #fff;
+}
+
+/* Öneriler */
+#results p {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-left: 4px solid #4caf50;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+#results strong {
+    color: #4caf50;
+}
