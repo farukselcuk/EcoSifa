@@ -71,6 +71,10 @@
                             <option value="fatigue">😴 Yorgunluk</option>
                             <option value="stress">😰 Stres</option>
                             <option value="insomnia">😫 Uykusuzluk</option>
+                            <option value="digestion">🤢 Sindirim Problemleri</option>
+                            <option value="joint_pain">🦴 Eklem Ağrıları</option>
+                            <option value="allergy">🤧 Alerji</option>
+                            <option value="anxiety">😟 Kaygı</option>
                         </select>
                     </div>
 
@@ -83,7 +87,7 @@
                                     <i class="fas fa-check"></i>
                                 </span>
                                 <span class="checkbox-text">
-                                    <i class="fas fa-leaf"></i> Bitki Çayları
+                                    <i class="fas fa-leaf"></i> Tekli Bitki
                                 </span>
                             </label>
                             <label class="checkbox-container">
@@ -92,7 +96,7 @@
                                     <i class="fas fa-check"></i>
                                 </span>
                                 <span class="checkbox-text">
-                                    <i class="fas fa-flask"></i> Karışımlar
+                                    <i class="fas fa-flask"></i> Karışım
                                 </span>
                             </label>
                         </div>
@@ -122,90 +126,20 @@
                     <input type="text" id="herbSearch" placeholder="Bitki ara...">
                 </div>
 
+                <div class="filter-buttons">
+                    <button onclick="bitkiListesiniGoster()" class="filter-button active">
+                        <i class="fas fa-th"></i> Tümü
+                    </button>
+                    <button onclick="filterByType('herb')" class="filter-button">
+                        <i class="fas fa-leaf"></i> Tekli Bitkiler
+                    </button>
+                    <button onclick="filterByType('mix')" class="filter-button">
+                        <i class="fas fa-mortar-pestle"></i> Karışımlar
+                    </button>
+                </div>
+
                 <div class="herbs-list">
-                    <div class="herb-item">
-                        <div class="herb-image">
-                            <img src="images/isirgan.jpg" alt="Isırgan Otu">
-                            <div class="herb-overlay">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                        </div>
-                        <div class="herb-info">
-                            <h3><i class="fas fa-seedling"></i> Isırgan Otu</h3>
-                            <div class="herb-properties">
-                                <span><i class="fas fa-star"></i> Özellikler</span>
-                                <p>Kan temizleyici özelliği vardır. Bağışıklık sistemini güçlendirir.</p>
-                            </div>
-                            <div class="herb-usage">
-                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
-                                <p>Günde 2-3 fincan çay olarak tüketilebilir.</p>
-                            </div>
-                            <div class="herb-actions">
-                                <button onclick="editHerb(${bitki.id})" class="edit-button">
-                                    <i class="fas fa-edit"></i> Düzenle
-                                </button>
-                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
-                                    <i class="fas fa-trash"></i> Sil
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="herb-item">
-                        <div class="herb-image">
-                            <img src="images/papatya.jpg" alt="Papatya">
-                            <div class="herb-overlay">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                        </div>
-                        <div class="herb-info">
-                            <h3><i class="fas fa-seedling"></i> Papatya</h3>
-                            <div class="herb-properties">
-                                <span><i class="fas fa-star"></i> Özellikler</span>
-                                <p>Sakinleştirici etkisi bulunur. Uykusuzluğa iyi gelir.</p>
-                            </div>
-                            <div class="herb-usage">
-                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
-                                <p>Yatmadan önce 1 fincan içilebilir.</p>
-                            </div>
-                            <div class="herb-actions">
-                                <button onclick="editHerb(${bitki.id})" class="edit-button">
-                                    <i class="fas fa-edit"></i> Düzenle
-                                </button>
-                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
-                                    <i class="fas fa-trash"></i> Sil
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="herb-item">
-                        <div class="herb-image">
-                            <img src="images/adacayi.jpg" alt="Adaçayı">
-                            <div class="herb-overlay">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                        </div>
-                        <div class="herb-info">
-                            <h3><i class="fas fa-seedling"></i> Adaçayı</h3>
-                            <div class="herb-properties">
-                                <span><i class="fas fa-star"></i> Özellikler</span>
-                                <p>Boğaz ağrısına iyi gelir. Antiseptik özelliği vardır.</p>
-                            </div>
-                            <div class="herb-usage">
-                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
-                                <p>Günde 2 kez ılık olarak içilebilir.</p>
-                            </div>
-                            <div class="herb-actions">
-                                <button onclick="editHerb(${bitki.id})" class="edit-button">
-                                    <i class="fas fa-edit"></i> Düzenle
-                                </button>
-                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
-                                    <i class="fas fa-trash"></i> Sil
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Statik kartları kaldır, JavaScript ile doldurulacak -->
                 </div>
 
                 <div class="add-herb-form">
@@ -224,8 +158,63 @@
                             <textarea id="herbUsage" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="herbImage"><i class="fas fa-image"></i> Resim URL:</label>
-                            <input type="text" id="herbImage" required>
+                            <label for="herbImage">
+                                <i class="fas fa-image"></i> Resim URL: 
+                                <span class="optional">(Opsiyonel)</span>
+                            </label>
+                            <input type="text" id="herbImage">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-heartbeat"></i> İlgili Rahatsızlıklar:</label>
+                            <div class="conditions-select">
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="headache"> Baş Ağrısı
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="cough"> Öksürük
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="insomnia"> Uykusuzluk
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="stress"> Stres
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="digestion"> Sindirim
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="joint_pain"> Eklem Ağrısı
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="allergy"> Alerji
+                                </label>
+                                <label class="condition-checkbox">
+                                    <input type="checkbox" name="conditions" value="anxiety"> Kaygı
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-flask"></i> Bitki Türü:</label>
+                            <div class="type-select">
+                                <label class="type-radio">
+                                    <input type="radio" name="herbType" value="herb" required>
+                                    <span class="radio-custom">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="radio-text">
+                                        <i class="fas fa-leaf"></i> Tekli Bitki
+                                    </span>
+                                </label>
+                                <label class="type-radio">
+                                    <input type="radio" name="herbType" value="mix" required>
+                                    <span class="radio-custom">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="radio-text">
+                                        <i class="fas fa-mortar-pestle"></i> Karışım
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-buttons">
                             <button type="submit" class="primary-button">
