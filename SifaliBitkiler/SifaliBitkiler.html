@@ -142,7 +142,23 @@
                     <!-- Statik kartları kaldır, JavaScript ile doldurulacak -->
                 </div>
 
-                <div class="add-herb-form">
+                <div class="pagination">
+                    <button class="pagination-button" onclick="changePage('prev')">
+                        <i class="fas fa-chevron-left"></i> Önceki
+                    </button>
+                    <div class="page-numbers">
+                        <!-- JavaScript ile doldurulacak -->
+                    </div>
+                    <button class="pagination-button" onclick="changePage('next')">
+                        Sonraki <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <button id="showAddHerbForm" class="add-herb-button">
+                    <i class="fas fa-plus-circle"></i> Yeni Bitki Ekle
+                </button>
+
+                <div class="add-herb-form" style="display: none;">
                     <h3><i class="fas fa-plus-circle"></i> Yeni Bitki Ekle</h3>
                     <form id="newHerbForm">
                         <div class="form-group">

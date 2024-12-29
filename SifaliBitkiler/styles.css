@@ -1143,3 +1143,97 @@ select:focus {
         height: 200px;
     }
 }
+
+/* Yeni Bitki Ekleme Butonu Stilleri */
+.add-herb-button {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.add-herb-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Form görünüm/kaybolma animasyonu */
+.add-herb-form {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.add-herb-form.show {
+    max-height: 2000px; /* Yeterince büyük bir değer */
+    opacity: 1;
+    margin: 30px 0;
+}
+
+/* Sayfalama Stilleri */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.pagination-button {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.pagination-button:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+.pagination-button:disabled {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f0f0f0;
+}
+
+.page-number:hover {
+    background: #e0e0e0;
+}
+
+.page-number.active {
+    background: #4CAF50;
+    color: white;
+}

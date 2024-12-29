@@ -92,6 +92,7 @@ function searchHerbs(searchTerm) {
 document.getElementById('herbSearch').addEventListener('input', debounce(function(e) {
     const searchTerm = e.target.value;
     const filteredHerbs = searchHerbs(searchTerm);
+    currentPage = 1; // Aramada ilk sayfaya dön
     bitkiListesiniGoster(filteredHerbs);
 }, 300));
 
@@ -175,10 +176,18 @@ function verileriKaydet() {
     localStorage.setItem('bitkiVerileri', JSON.stringify(bitkiVerileri));
 }
 
-// Bitkileri görüntüleme fonksiyonunu güncelle
+// Sayfalama değişkenleri
+let currentPage = 1;
+const itemsPerPage = 10;
+
+// Sayfalama ile bitkileri görüntüleme fonksiyonu
 function bitkiListesiniGoster(herbs = bitkiVerileri) {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedHerbs = herbs.slice(startIndex, endIndex);
+    
     const herbsList = document.querySelector('.herbs-list');
-    herbsList.innerHTML = herbs.map(bitki => `
+    herbsList.innerHTML = paginatedHerbs.map(bitki => `
         <div class="herb-item" data-id="${bitki.id}">
             <div class="herb-image" onclick="showImageModal('${bitki.image}', '${bitki.name}')">
                 <img src="${bitki.image}" alt="${bitki.name}">
@@ -221,6 +230,48 @@ function bitkiListesiniGoster(herbs = bitkiVerileri) {
             </div>
         </div>
     `).join('');
+
+    // Sayfalama kontrollerini güncelle
+    updatePagination(herbs.length);
+}
+
+// Sayfalama kontrollerini güncelleme
+function updatePagination(totalItems) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const pageNumbers = document.querySelector('.page-numbers');
+    const prevButton = document.querySelector('.pagination-button:first-child');
+    const nextButton = document.querySelector('.pagination-button:last-child');
+
+    // Sayfa numaralarını oluştur
+    let pagesHtml = '';
+    for (let i = 1; i <= totalPages; i++) {
+        pagesHtml += `
+            <div class="page-number ${i === currentPage ? 'active' : ''}" 
+                 onclick="goToPage(${i})">
+                ${i}
+            </div>
+        `;
+    }
+    pageNumbers.innerHTML = pagesHtml;
+
+    // Önceki/Sonraki butonlarını güncelle
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+}
+
+// Sayfa değiştirme fonksiyonları
+function changePage(direction) {
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next' && currentPage < Math.ceil(bitkiVerileri.length / itemsPerPage)) {
+        currentPage++;
+    }
+    bitkiListesiniGoster();
+}
+
+function goToPage(pageNumber) {
+    currentPage = pageNumber;
+    bitkiListesiniGoster();
 }
 
 // Rahatsızlık isimlerini getiren yardımcı fonksiyon
@@ -243,6 +294,7 @@ function filterByCondition(condition) {
     const filteredHerbs = bitkiVerileri.filter(bitki => 
         bitki.conditions.includes(condition)
     );
+    currentPage = 1; // Filtrelemede ilk sayfaya dön
     bitkiListesiniGoster(filteredHerbs);
 }
 
@@ -328,6 +380,15 @@ document.getElementById('newHerbForm').addEventListener('submit', function(e) {
     verileriKaydet();
     bitkiListesiniGoster();
     this.reset();
+
+    // Form gönderildikten sonra formu gizle
+    const form = document.querySelector('.add-herb-form');
+    const button = document.getElementById('showAddHerbForm');
+    form.classList.remove('show');
+    setTimeout(() => {
+        form.style.display = 'none';
+    }, 300);
+    button.innerHTML = '<i class="fas fa-plus-circle"></i> Yeni Bitki Ekle';
 });
 
 // Bitki düzenleme fonksiyonu
@@ -400,6 +461,87 @@ document.addEventListener('DOMContentLoaded', () => {
             benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar.",
             usage: "Günde 2 fincan içilebilir.",
             conditions: ["stress", "anxiety"]
+        },
+        {
+            id: 4,
+            name: "Ihlamur",
+            type: "herb",
+            image: "images/ihlamur.jpg",
+            benefits: "Soğuk algınlığına iyi gelir, bağışıklığı güçlendirir, rahatlatıcı etkisi vardır.",
+            usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
+            conditions: ["cough", "insomnia"]
+        },
+        {
+            id: 5,
+            name: "Zencefil ve Zerdeçal Karışımı",
+            type: "mix",
+            image: "images/zencefil-zerdecal.jpg",
+            benefits: "Güçlü antiinflamatuar etki, bağışıklık güçlendirici ve sindirim düzenleyici.",
+            usage: "Günde 2 fincan ılık olarak içilebilir.",
+            conditions: ["joint_pain", "digestion"]
+        },
+        {
+            id: 6,
+            name: "Ekinezya",
+            type: "herb",
+            image: "images/ekinezya.jpg",
+            benefits: "Bağışıklık sistemini güçlendirir, soğuk algınlığı semptomlarını hafifletir.",
+            usage: "Günde 3 fincan içilebilir.",
+            conditions: ["cough", "allergy"]
+        },
+        {
+            id: 7,
+            name: "Melisa ve Papatya Karışımı",
+            type: "mix",
+            image: "images/melisa-papatya.jpg",
+            benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar, uykuya yardımcı olur.",
+            usage: "Akşam yatmadan önce 1 fincan içilebilir.",
+            conditions: ["stress", "anxiety", "insomnia"]
+        },
+        {
+            id: 8,
+            name: "Rezene",
+            type: "herb",
+            image: "images/rezene.jpg",
+            benefits: "Sindirim sistemini düzenler, gaz problemlerini giderir.",
+            usage: "Yemeklerden sonra 1 fincan içilebilir.",
+            conditions: ["digestion"]
+        },
+        {
+            id: 9,
+            name: "Kuşburnu",
+            type: "herb",
+            image: "images/kusburnu.jpg",
+            benefits: "C vitamini açısından zengin, bağışıklık güçlendirici, antioksidan etkili.",
+            usage: "Günde 2-3 fincan içilebilir.",
+            conditions: ["cough", "allergy"]
+        },
+        {
+            id: 10,
+            name: "Kekik ve Adaçayı Karışımı",
+            type: "mix",
+            image: "images/kekik-adacayi.jpg",
+            benefits: "Boğaz ağrısını hafifletir, öksürüğe iyi gelir, antiseptik özelliği vardır.",
+            usage: "Günde 2-3 fincan ılık olarak içilebilir.",
+            conditions: ["cough", "digestion"]
+        },
+        {
+            id: 11,
+            name: "Sarı Kantaron",
+            type: "herb",
+            image: "images/sari-kantaron.jpg",
+            benefits: "Depresyon ve kaygıyı azaltır, ruh halini dengeler.",
+            usage: "Günde 2 fincan içilebilir.",
+            conditions: ["anxiety", "stress"]
+        },
+        {
+            id: 12,
+            name: "Zencefil, Limon ve Bal Karışımı",
+            type: "mix",
+            image: "images/zencefil-limon-bal.jpg",
+            benefits: "Soğuk algınlığı semptomlarını hafifletir, bağışıklığı güçlendirir.",
+            usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
+            conditions: ["cough", "allergy"]
         }
     ];
 
@@ -478,5 +620,25 @@ const storage = {
 // Tür filtreleme fonksiyonu ekleyelim
 function filterByType(type) {
     const filteredHerbs = bitkiVerileri.filter(bitki => bitki.type === type);
+    currentPage = 1; // Filtrelemede ilk sayfaya dön
     bitkiListesiniGoster(filteredHerbs);
 }
+
+// Form göster/gizle fonksiyonu
+document.getElementById('showAddHerbForm').addEventListener('click', function() {
+    const form = document.querySelector('.add-herb-form');
+    const button = document.getElementById('showAddHerbForm');
+    
+    if (form.classList.contains('show')) {
+        form.classList.remove('show');
+        form.style.display = 'none';
+        button.innerHTML = '<i class="fas fa-plus-circle"></i> Yeni Bitki Ekle';
+    } else {
+        form.style.display = 'block';
+        // Display'i block yaptıktan sonra animasyon için timeout kullanıyoruz
+        setTimeout(() => {
+            form.classList.add('show');
+        }, 10);
+        button.innerHTML = '<i class="fas fa-minus-circle"></i> Formu Gizle';
+    }
+});
