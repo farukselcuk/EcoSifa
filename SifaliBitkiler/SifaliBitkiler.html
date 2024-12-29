@@ -140,6 +140,14 @@
                                 <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
                                 <p>Günde 2-3 fincan çay olarak tüketilebilir.</p>
                             </div>
+                            <div class="herb-actions">
+                                <button onclick="editHerb(${bitki.id})" class="edit-button">
+                                    <i class="fas fa-edit"></i> Düzenle
+                                </button>
+                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
+                                    <i class="fas fa-trash"></i> Sil
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -159,6 +167,14 @@
                             <div class="herb-usage">
                                 <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
                                 <p>Yatmadan önce 1 fincan içilebilir.</p>
+                            </div>
+                            <div class="herb-actions">
+                                <button onclick="editHerb(${bitki.id})" class="edit-button">
+                                    <i class="fas fa-edit"></i> Düzenle
+                                </button>
+                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
+                                    <i class="fas fa-trash"></i> Sil
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -180,8 +196,46 @@
                                 <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
                                 <p>Günde 2 kez ılık olarak içilebilir.</p>
                             </div>
+                            <div class="herb-actions">
+                                <button onclick="editHerb(${bitki.id})" class="edit-button">
+                                    <i class="fas fa-edit"></i> Düzenle
+                                </button>
+                                <button onclick="deleteHerb(${bitki.id})" class="delete-button">
+                                    <i class="fas fa-trash"></i> Sil
+                                </button>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="add-herb-form">
+                    <h3><i class="fas fa-plus-circle"></i> Yeni Bitki Ekle</h3>
+                    <form id="newHerbForm">
+                        <div class="form-group">
+                            <label for="herbName"><i class="fas fa-leaf"></i> Bitki Adı:</label>
+                            <input type="text" id="herbName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="herbBenefits"><i class="fas fa-star"></i> Faydaları:</label>
+                            <textarea id="herbBenefits" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="herbUsage"><i class="fas fa-mortar-pestle"></i> Kullanımı:</label>
+                            <textarea id="herbUsage" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="herbImage"><i class="fas fa-image"></i> Resim URL:</label>
+                            <input type="text" id="herbImage" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="primary-button">
+                                <i class="fas fa-plus"></i> Bitki Ekle
+                            </button>
+                            <button type="reset" class="secondary-button">
+                                <i class="fas fa-undo"></i> Formu Temizle
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <button onclick="showPage('home')" class="back-button">
@@ -195,6 +249,12 @@
     <footer>
         <p>&copy; 2024 Şifalı Bitkiler ve Alternatif Tıp</p>
     </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

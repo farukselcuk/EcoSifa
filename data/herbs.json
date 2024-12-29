@@ -1,0 +1,35 @@
+{
+    "herbs": [
+        {
+            "id": 1,
+            "name": "Isırgan Otu",
+            "image": "images/isirgan.jpg",
+            "benefits": "Kan temizleyici özelliği vardır. Bağışıklık sistemini güçlendirir.",
+            "usage": "Günde 2-3 fincan çay olarak tüketilebilir."
+        },
+        {
+            "id": 2,
+            "name": "Papatya",
+            "image": "images/papatya.jpg",
+            "benefits": "Sakinleştirici etkisi bulunur. Uykusuzluğa iyi gelir.",
+            "usage": "Yatmadan önce 1 fincan içilebilir."
+        }
+    ],
+    "diseases": {
+        "headache": {
+            "name": "Baş Ağrısı",
+            "treatments": {
+                "herb": {
+                    "name": "Nane Çayı",
+                    "usage": "Günde 2-3 fincan içilebilir.",
+                    "effect": "Baş ağrısını hafifletir ve ferahlık sağlar."
+                },
+                "mix": {
+                    "name": "Lavanta ve Papatya Karışımı",
+                    "usage": "Günde 2 fincan içilebilir.",
+                    "effect": "Ağrıyı dindirir ve rahatlatıcı etki sağlar."
+                }
+            }
+        }
+    }
+} 
