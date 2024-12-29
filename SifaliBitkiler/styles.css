@@ -1,142 +1,629 @@
+/* Font Awesome ikonları için link ekleyin head kısmına */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
 /* Genel Ayarlar */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #f4f9f4;
+    background-color: #f0f7f0;
     color: #333;
-    font-size: 16px;
-    line-height: 1.5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Sayfa yüksekliğini tamamen kapsar */
-    margin: 0;
+    line-height: 1.6;
 }
 
-/* Sayfa düzeni */
-.page {
-    display: block; /* Sayfa içeriği görünür yapılacak */
-    max-width: 800px; /* İçeriğin genişliği sınırlı */
-    padding: 30px;
-    background-color: #fff; /* Arka plan beyaz */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gölgeleme efekti */
-    width: 100%;
-}
-
-/* Header (Eski Format) */
+/* Header Stili */
 header {
-    background-color: #388e3c; /* Yeşil tonunda */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 0; /* Yuvarlatılmış köşeler kaldırıldı */
-    text-align: left; /* Sol hizalama */
-    position: absolute;
-    top: 0;
-    width: 100%;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header h1 {
-    font-size: 2rem;
-    margin: 0;
-    text-align: center;
-}
-
-/* Şifalı Bitkiler ve Alternatif Tıp Başlığı */
-header h2 {
     font-size: 2.5rem;
-    margin: 20px 0 10px 0;
-    text-align: center;
-    color: #fff;
+    margin: 0;
 }
 
 /* Ana İçerik */
 main {
-    margin-top: 100px; /* Header'ın üst kısmına boşluk bırak */
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px 70px 20px;
 }
 
-/* Başlıklar */
-h2, h3 {
-    color: #388e3c; /* Yeşil tonunda */
-    margin-bottom: 10px;
+.page {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: none;
 }
 
 /* Butonlar */
-button {
-    background-color: #4caf50; /* Yeşil tonunda */
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-    margin-bottom: 15px; /* Butonlarla içerik arasına boşluk ekle */
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
 }
 
-button:hover {
-    background-color: #45a049; /* Hover yeşil rengi */
+.primary-button, .secondary-button {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
 }
 
-button:focus {
-    outline: none;
+.primary-button {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-/* Form alanları */
-input[type="checkbox"] {
-    margin-right: 10px;
+.secondary-button {
+    background: linear-gradient(135deg, #3a7bd5, #3a6073);
+    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
 }
 
-/* Seçim kutusu */
+.primary-button:hover, .secondary-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.back-button {
+    background-color: #666;
+    margin-top: 20px;
+}
+
+/* Form Elementleri */
+.treatment-form {
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
 select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
     width: 100%;
-    margin-top: 10px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 8px;
 }
 
-/* Liste */
-ul {
-    list-style: none;
-    padding-left: 0;
+.treatment-types {
+    margin: 20px 0;
 }
 
-ul li {
-    background-color: #e8f5e9;
-    margin-bottom: 10px;
+.checkbox-container {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* Bitkiler Listesi */
+.herbs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.herb-item {
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.herb-item:hover {
+    transform: translateY(-5px);
+}
+
+.herb-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.herb-info {
+    padding: 15px;
+}
+
+/* Sonuçlar */
+#results {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+#results p {
+    margin: 10px 0;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #4CAF50;
+    background: white;
 }
 
 /* Footer */
 footer {
-    background-color: #388e3c; /* Yeşil tonunda */
-    color: white;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    background: #333;
+    color: white;
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    border-top: 1px solid #fff;
+    z-index: 100;
 }
 
-/* Öneriler */
-#results p {
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-left: 4px solid #4caf50;
+/* Ana Sayfa Stilleri */
+.welcome-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-container h2 {
+    font-size: 2.8rem;
+    color: #2c5530;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.feature-box {
+    background: linear-gradient(145deg, #ffffff, #f0f7f0);
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 5px 15px 25px rgba(0,0,0,0.1);
+}
+
+.feature-box i {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.feature-box h3 {
+    color: #2c5530;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.feature-box p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Responsive Tasarım Güncellemesi */
+@media (max-width: 768px) {
+    .welcome-container h2 {
+        font-size: 2.2rem;
+    }
+
+    .features-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .primary-button, .secondary-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Tedavi Sayfası Stilleri */
+.treatment-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.treatment-container h2 {
+    color: #2c5530;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.treatment-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.treatment-form {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c5530;
+    font-weight: 500;
     margin-bottom: 10px;
-    border-radius: 4px;
+}
+
+select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    outline: none;
+}
+
+.treatment-types {
+    margin: 25px 0;
+}
+
+.treatment-types p {
+    color: #2c5530;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover {
+    border-color: #4CAF50;
+    background: #f8fff8;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.checkbox-custom i {
+    color: white;
+    font-size: 12px;
+    display: none;
+}
+
+.checkbox-container input:checked + .checkbox-custom {
+    background-color: #4CAF50;
+}
+
+.checkbox-container input:checked + .checkbox-custom i {
+    display: block;
+}
+
+.checkbox-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.suggest-button {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 30px auto 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.suggest-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+#results {
+    margin-top: 30px;
+    padding: 0;
+}
+
+#results p {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #4CAF50;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 #results strong {
-    color: #4caf50;
+    color: #2c5530;
+    font-size: 1.1rem;
+}
+
+#results em {
+    color: #666;
+    font-style: normal;
+    display: block;
+    margin-top: 8px;
+}
+
+.back-button {
+    background: #666;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 30px auto 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .treatment-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .treatment-form {
+        padding: 20px;
+    }
+}
+
+/* Veritabanı Sayfası Stilleri */
+.database-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.database-container h2 {
+    color: #2c5530;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.database-intro {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    outline: none;
+}
+
+.search-box i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.herbs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.herb-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.herb-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.herb-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.herb-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.herb-item:hover .herb-image img {
+    transform: scale(1.1);
+}
+
+.herb-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.herb-overlay i {
+    color: white;
+    font-size: 2rem;
+}
+
+.herb-item:hover .herb-overlay {
+    opacity: 1;
+}
+
+.herb-info {
+    padding: 20px;
+}
+
+.herb-info h3 {
+    color: #2c5530;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.herb-properties, .herb-usage {
+    margin-bottom: 15px;
+}
+
+.herb-properties span, .herb-usage span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4CAF50;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.herb-properties p, .herb-usage p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-left: 24px;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .database-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .herbs-list {
+        grid-template-columns: 1fr;
+    }
+
+    .herb-item {
+        max-width: 400px;
+        margin: 0 auto;
+    }
 }

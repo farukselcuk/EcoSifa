@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şifalı Bitkiler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -16,49 +19,175 @@
     <main>
         <!-- Ana Sayfa -->
         <section class="page" id="home">
-            <h2>Hoş Geldiniz</h2>
-            <p>Amacımız, doğal yollarla sağlığınıza destek olmaktır. Alternatif tıbbın zengin dünyasına hoş geldiniz!</p>
-            <button onclick="showPage('treatment')">Tedaviye Geç</button>
-            <button onclick="showPage('database')">Veritabanına Geç</button>
+            <div class="welcome-container">
+                <h2>Hoş Geldiniz</h2>
+                <p class="welcome-text">Amacımız, doğal yollarla sağlığınıza destek olmaktır. Alternatif tıbbın zengin dünyasına hoş geldiniz!</p>
+                
+                <div class="features-container">
+                    <div class="feature-box">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Doğal Tedavi</h3>
+                        <p>Tamamen doğal bitkilerle şifa bulun</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-heart"></i>
+                        <h3>Sağlıklı Yaşam</h3>
+                        <p>Doğal yöntemlerle sağlıklı kalın</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-book-medical"></i>
+                        <h3>Bilimsel Yaklaşım</h3>
+                        <p>Geleneksel ve modern tıbbın birleşimi</p>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button onclick="showPage('treatment')" class="primary-button">
+                        <i class="fas fa-stethoscope"></i> Tedaviye Geç
+                    </button>
+                    <button onclick="showPage('database')" class="secondary-button">
+                        <i class="fas fa-database"></i> Bitkiler Veritabanı
+                    </button>
+                </div>
+            </div>
         </section>
 
         <!-- Tedavi Sayfası -->
         <section class="page" id="treatment">
-            <h2>Tedavi Seçimi</h2>
-            <form>
-                <label for="disease">Hastalığınızı Seçin:</label>
-                <select id="disease">
-                    <option value="headache">Baş Ağrısı</option>
-                    <option value="cough">Öksürük</option>
-                    <option value="fatigue">Yorgunluk</option>
-                </select>
+            <div class="treatment-container">
+                <h2><i class="fas fa-heartbeat"></i> Tedavi Seçimi</h2>
+                <p class="treatment-intro">Size en uygun doğal tedavi yöntemini bulmak için lütfen aşağıdaki bilgileri doldurun.</p>
+                
+                <form class="treatment-form">
+                    <div class="form-group">
+                        <label for="disease">
+                            <i class="fas fa-notes-medical"></i>
+                            Rahatsızlığınızı Seçin:
+                        </label>
+                        <select id="disease">
+                            <option value="">Seçiniz...</option>
+                            <option value="headache">🤕 Baş Ağrısı</option>
+                            <option value="cough">🤧 Öksürük</option>
+                            <option value="fatigue">😴 Yorgunluk</option>
+                            <option value="stress">😰 Stres</option>
+                            <option value="insomnia">😫 Uykusuzluk</option>
+                        </select>
+                    </div>
 
-                <p>Tedavi Türü:</p>
-                <label>
-                    <input type="checkbox" name="treatment-type" value="herb"> Bitki
-                </label>
-                <label>
-                    <input type="checkbox" name="treatment-type" value="mix"> Karışım
-                </label>
-                <br><br>
-                <button type="button" onclick="showSuggestions()">Öneri Al</button>
-            </form>
-            <div id="results" style="margin-top: 20px; font-size: 18px; color: #333;">
-                <!-- Öneriler burada gösterilecek -->
+                    <div class="treatment-types">
+                        <p><i class="fas fa-mortar-pestle"></i> Tedavi Türü:</p>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="treatment-type" value="herb">
+                                <span class="checkbox-custom">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="checkbox-text">
+                                    <i class="fas fa-leaf"></i> Bitki Çayları
+                                </span>
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="treatment-type" value="mix">
+                                <span class="checkbox-custom">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="checkbox-text">
+                                    <i class="fas fa-flask"></i> Karışımlar
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="showSuggestions()" class="suggest-button">
+                        <i class="fas fa-search"></i> Öneri Al
+                    </button>
+                </form>
+
+                <div id="results"></div>
+
+                <button onclick="showPage('home')" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Ana Sayfa
+                </button>
             </div>
-            <button onclick="showPage('home')">Ana Sayfa</button>
         </section>
 
         <!-- Veritabanı Sayfası -->
         <section class="page" id="database">
-            <h2>Veritabanı</h2>
-            <p>Hangi bitki ne işe yarar, hangi karışımlar hangi rahatsızlıklarda kullanılır öğrenmek için aşağıdaki listeye göz atın:</p>
-            <ul>
-                <li>Isırgan Otu: Kan temizleyici özelliği vardır.</li>
-                <li>Ballı Limon Karışımı: Öksürük için idealdir.</li>
-                <li>Papatya Çayı: Sakinleştirici etkisi bulunur.</li>
-            </ul>
-            <button onclick="showPage('home')">Ana Sayfa</button>
+            <div class="database-container">
+                <h2><i class="fas fa-leaf"></i> Şifalı Bitkiler Veritabanı</h2>
+                <p class="database-intro">Doğanın bize sunduğu şifalı bitkileri ve faydalarını keşfedin.</p>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="herbSearch" placeholder="Bitki ara...">
+                </div>
+
+                <div class="herbs-list">
+                    <div class="herb-item">
+                        <div class="herb-image">
+                            <img src="images/isirgan.jpg" alt="Isırgan Otu">
+                            <div class="herb-overlay">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
+                        <div class="herb-info">
+                            <h3><i class="fas fa-seedling"></i> Isırgan Otu</h3>
+                            <div class="herb-properties">
+                                <span><i class="fas fa-star"></i> Özellikler</span>
+                                <p>Kan temizleyici özelliği vardır. Bağışıklık sistemini güçlendirir.</p>
+                            </div>
+                            <div class="herb-usage">
+                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
+                                <p>Günde 2-3 fincan çay olarak tüketilebilir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="herb-item">
+                        <div class="herb-image">
+                            <img src="images/papatya.jpg" alt="Papatya">
+                            <div class="herb-overlay">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
+                        <div class="herb-info">
+                            <h3><i class="fas fa-seedling"></i> Papatya</h3>
+                            <div class="herb-properties">
+                                <span><i class="fas fa-star"></i> Özellikler</span>
+                                <p>Sakinleştirici etkisi bulunur. Uykusuzluğa iyi gelir.</p>
+                            </div>
+                            <div class="herb-usage">
+                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
+                                <p>Yatmadan önce 1 fincan içilebilir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="herb-item">
+                        <div class="herb-image">
+                            <img src="images/adacayi.jpg" alt="Adaçayı">
+                            <div class="herb-overlay">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                        </div>
+                        <div class="herb-info">
+                            <h3><i class="fas fa-seedling"></i> Adaçayı</h3>
+                            <div class="herb-properties">
+                                <span><i class="fas fa-star"></i> Özellikler</span>
+                                <p>Boğaz ağrısına iyi gelir. Antiseptik özelliği vardır.</p>
+                            </div>
+                            <div class="herb-usage">
+                                <span><i class="fas fa-mortar-pestle"></i> Kullanım</span>
+                                <p>Günde 2 kez ılık olarak içilebilir.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="showPage('home')" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Ana Sayfa
+                </button>
+            </div>
         </section>
     </main>
 
@@ -67,7 +196,6 @@
         <p>&copy; 2024 Şifalı Bitkiler ve Alternatif Tıp</p>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

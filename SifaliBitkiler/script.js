@@ -1,16 +1,21 @@
-// Sayfa Geçişlerini Yönetmek için JavaScript
+// Sayfa Geçişleri
 function showPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
 }
 
-// Öneri Al Butonu için İşlev
+// Önerileri Göster
 function showSuggestions() {
     const disease = document.getElementById('disease').value;
     const treatmentTypes = document.querySelectorAll('input[name="treatment-type"]:checked');
     let selectedTypes = [];
     treatmentTypes.forEach(type => selectedTypes.push(type.value));
+
+    if (!disease) {
+        alert("Lütfen bir rahatsızlık seçin.");
+        return;
+    }
 
     if (selectedTypes.length === 0) {
         alert("Lütfen en az bir tedavi türü seçin.");
@@ -18,39 +23,47 @@ function showSuggestions() {
     }
 
     let suggestions = "";
-    if (disease === "headache") {
-        if (selectedTypes.includes("herb")) {
-            suggestions += `
-                <p><strong>- Nane Çayı:</strong> Baş ağrısını hafifletebilir. 
-                <br><em>Kullanım:</em> Günde 2 defa, yemeklerden sonra içilmesi önerilir.</p>`;
-        }
-        if (selectedTypes.includes("mix")) {
-            suggestions += `
-                <p><strong>- Ballı Papatya Karışımı:</strong> Rahatlama sağlayabilir.
-                <br><em>Kullanım:</em> Sabah ve akşam birer çay kaşığı tüketebilirsiniz.</p>`;
-        }
-    } else if (disease === "cough") {
-        if (selectedTypes.includes("herb")) {
-            suggestions += `
-                <p><strong>- Zencefil Çayı:</strong> Öksürüğü hafifletebilir.
-                <br><em>Kullanım:</em> Günde 3 fincan, sıcak olarak içebilirsiniz.</p>`;
-        }
-        if (selectedTypes.includes("mix")) {
-            suggestions += `
-                <p><strong>- Bal ve Limon Karışımı:</strong> Boğazı yatıştırır.
-                <br><em>Kullanım:</em> Bir çay kaşığı karışımı ılık suya ekleyip için. Günde 2 kez uygulanabilir.</p>`;
-        }
-    } else if (disease === "fatigue") {
-        if (selectedTypes.includes("herb")) {
-            suggestions += `
-                <p><strong>- Yeşil Çay:</strong> Enerji seviyesini artırabilir.
-                <br><em>Kullanım:</em> Sabah ve öğlen birer fincan içebilirsiniz.</p>`;
-        }
-        if (selectedTypes.includes("mix")) {
-            suggestions += `
-                <p><strong>- Bal ve Tarçın Karışımı:</strong> Enerji verebilir.
-                <br><em>Kullanım:</em> Kahvaltı öncesi ve yatmadan önce birer çay kaşığı tüketebilirsiniz.</p>`;
-        }
+    const treatments = {
+        headache: {
+            herb: {
+                name: "Nane Çayı",
+                usage: "Günde 2-3 fincan içilebilir.",
+                effect: "Baş ağrısını hafifletir ve ferahlık sağlar."
+            },
+            mix: {
+                name: "Lavanta ve Papatya Karışımı",
+                usage: "Günde 2 fincan içilebilir.",
+                effect: "Ağrıyı dindirir ve rahatlatıcı etki sağlar."
+            }
+        },
+        cough: {
+            herb: {
+                name: "Zencefil Çayı",
+                usage: "Günde 3 fincan içilebilir.",
+                effect: "Öksürüğü hafifletir ve bağışıklığı güçlendirir."
+            },
+            mix: {
+                name: "Bal ve Zerdeçal Karışımı",
+                usage: "Günde 2 kez bir tatlı kaşığı.",
+                effect: "Boğaz ağrısını dindirir ve öksürüğü azaltır."
+            }
+        },
+        // Diğer hastalıklar için öneriler eklenebilir
+    };
+
+    if (treatments[disease]) {
+        selectedTypes.forEach(type => {
+            if (treatments[disease][type]) {
+                const treatment = treatments[disease][type];
+                suggestions += `
+                    <p>
+                        <strong>${treatment.name}</strong><br>
+                        <em>Kullanım:</em> ${treatment.usage}<br>
+                        <em>Etki:</em> ${treatment.effect}
+                    </p>
+                `;
+            }
+        });
     }
 
     const resultDiv = document.getElementById('results');
@@ -61,7 +74,24 @@ function showSuggestions() {
     }
 }
 
-// Varsayılan Sayfa
+// Bitki arama fonksiyonu
+document.getElementById('herbSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const herbs = document.querySelectorAll('.herb-item');
+    
+    herbs.forEach(herb => {
+        const herbName = herb.querySelector('h3').textContent.toLowerCase();
+        const herbProperties = herb.querySelector('.herb-properties p').textContent.toLowerCase();
+        
+        if (herbName.includes(searchTerm) || herbProperties.includes(searchTerm)) {
+            herb.style.display = '';
+        } else {
+            herb.style.display = 'none';
+        }
+    });
+});
+
+// Sayfa Yüklendiğinde
 document.addEventListener('DOMContentLoaded', () => {
-    showPage('home'); // Ana sayfa açılışta görünsün
+    showPage('home');
 });
