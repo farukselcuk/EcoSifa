@@ -430,126 +430,129 @@ function deleteHerb(id) {
 
 // Sayfa yüklendiğinde
 document.addEventListener('DOMContentLoaded', () => {
-    // LocalStorage'ı temizle ve varsayılan verileri yükle
-    localStorage.clear();
+    // LocalStorage'dan verileri al, yoksa varsayılan verileri kullan
+    let storedHerbs = localStorage.getItem('bitkiVerileri');
     
-    // Varsayılan verileri tanımla
-    const defaultHerbs = [
-        {
-            id: 1,
-            name: "Nane",
-            type: "herb",
-            image: "images/nane.jpg",
-            benefits: "Baş ağrısını hafifletir, sindirime yardımcı olur, ferahlatıcı etkisi vardır.",
-            usage: "Günde 2-3 fincan çay olarak tüketilebilir.",
-            conditions: ["headache", "digestion"]
-        },
-        {
-            id: 2,
-            name: "Papatya ve Lavanta Karışımı",
-            type: "mix",
-            image: "images/papatya-lavanta.jpg",
-            benefits: "Sakinleştirici etkisi bulunur. Uykusuzluğa ve strese iyi gelir.",
-            usage: "Yatmadan önce 1 fincan içilebilir.",
-            conditions: ["insomnia", "stress", "anxiety"]
-        },
-        {
-            id: 3,
-            name: "Ömer Faruk Karışımı",
-            type: "mix",
-            image: "images/default-herb.jpg",
-            benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar.",
-            usage: "Günde 2 fincan içilebilir.",
-            conditions: ["stress", "anxiety"]
-        },
-        {
-            id: 4,
-            name: "Ihlamur",
-            type: "herb",
-            image: "images/ihlamur.jpg",
-            benefits: "Soğuk algınlığına iyi gelir, bağışıklığı güçlendirir, rahatlatıcı etkisi vardır.",
-            usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
-            conditions: ["cough", "insomnia"]
-        },
-        {
-            id: 5,
-            name: "Zencefil ve Zerdeçal Karışımı",
-            type: "mix",
-            image: "images/zencefil-zerdecal.jpg",
-            benefits: "Güçlü antiinflamatuar etki, bağışıklık güçlendirici ve sindirim düzenleyici.",
-            usage: "Günde 2 fincan ılık olarak içilebilir.",
-            conditions: ["joint_pain", "digestion"]
-        },
-        {
-            id: 6,
-            name: "Ekinezya",
-            type: "herb",
-            image: "images/ekinezya.jpg",
-            benefits: "Bağışıklık sistemini güçlendirir, soğuk algınlığı semptomlarını hafifletir.",
-            usage: "Günde 3 fincan içilebilir.",
-            conditions: ["cough", "allergy"]
-        },
-        {
-            id: 7,
-            name: "Melisa ve Papatya Karışımı",
-            type: "mix",
-            image: "images/melisa-papatya.jpg",
-            benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar, uykuya yardımcı olur.",
-            usage: "Akşam yatmadan önce 1 fincan içilebilir.",
-            conditions: ["stress", "anxiety", "insomnia"]
-        },
-        {
-            id: 8,
-            name: "Rezene",
-            type: "herb",
-            image: "images/rezene.jpg",
-            benefits: "Sindirim sistemini düzenler, gaz problemlerini giderir.",
-            usage: "Yemeklerden sonra 1 fincan içilebilir.",
-            conditions: ["digestion"]
-        },
-        {
-            id: 9,
-            name: "Kuşburnu",
-            type: "herb",
-            image: "images/kusburnu.jpg",
-            benefits: "C vitamini açısından zengin, bağışıklık güçlendirici, antioksidan etkili.",
-            usage: "Günde 2-3 fincan içilebilir.",
-            conditions: ["cough", "allergy"]
-        },
-        {
-            id: 10,
-            name: "Kekik ve Adaçayı Karışımı",
-            type: "mix",
-            image: "images/kekik-adacayi.jpg",
-            benefits: "Boğaz ağrısını hafifletir, öksürüğe iyi gelir, antiseptik özelliği vardır.",
-            usage: "Günde 2-3 fincan ılık olarak içilebilir.",
-            conditions: ["cough", "digestion"]
-        },
-        {
-            id: 11,
-            name: "Sarı Kantaron",
-            type: "herb",
-            image: "images/sari-kantaron.jpg",
-            benefits: "Depresyon ve kaygıyı azaltır, ruh halini dengeler.",
-            usage: "Günde 2 fincan içilebilir.",
-            conditions: ["anxiety", "stress"]
-        },
-        {
-            id: 12,
-            name: "Zencefil, Limon ve Bal Karışımı",
-            type: "mix",
-            image: "images/zencefil-limon-bal.jpg",
-            benefits: "Soğuk algınlığı semptomlarını hafifletir, bağışıklığı güçlendirir.",
-            usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
-            conditions: ["cough", "allergy"]
-        }
-    ];
-
-    // Varsayılan verileri localStorage'a kaydet
-    localStorage.setItem('bitkiVerileri', JSON.stringify(defaultHerbs));
-    
-    // Global bitkiVerileri değişkenini güncelle
-    bitkiVerileri = defaultHerbs;
+    if (!storedHerbs) {
+        // Eğer localStorage'da veri yoksa varsayılan verileri kullan
+        const defaultHerbs = [
+            {
+                id: 1,
+                name: "Nane",
+                type: "herb",
+                image: "images/nane.jpg",
+                benefits: "Baş ağrısını hafifletir, sindirime yardımcı olur, ferahlatıcı etkisi vardır.",
+                usage: "Günde 2-3 fincan çay olarak tüketilebilir.",
+                conditions: ["headache", "digestion"]
+            },
+            {
+                id: 2,
+                name: "Papatya ve Lavanta Karışımı",
+                type: "mix",
+                image: "images/papatya-lavanta.jpg",
+                benefits: "Sakinleştirici etkisi bulunur. Uykusuzluğa ve strese iyi gelir.",
+                usage: "Yatmadan önce 1 fincan içilebilir.",
+                conditions: ["insomnia", "stress", "anxiety"]
+            },
+            {
+                id: 3,
+                name: "Ömer Faruk Karışımı",
+                type: "mix",
+                image: "images/default-herb.jpg",
+                benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar.",
+                usage: "Günde 2 fincan içilebilir.",
+                conditions: ["stress", "anxiety"]
+            },
+            {
+                id: 4,
+                name: "Ihlamur",
+                type: "herb",
+                image: "images/ihlamur.jpg",
+                benefits: "Soğuk algınlığına iyi gelir, bağışıklığı güçlendirir, rahatlatıcı etkisi vardır.",
+                usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
+                conditions: ["cough", "insomnia"]
+            },
+            {
+                id: 5,
+                name: "Zencefil ve Zerdeçal Karışımı",
+                type: "mix",
+                image: "images/zencefil-zerdecal.jpg",
+                benefits: "Güçlü antiinflamatuar etki, bağışıklık güçlendirici ve sindirim düzenleyici.",
+                usage: "Günde 2 fincan ılık olarak içilebilir.",
+                conditions: ["joint_pain", "digestion"]
+            },
+            {
+                id: 6,
+                name: "Ekinezya",
+                type: "herb",
+                image: "images/ekinezya.jpg",
+                benefits: "Bağışıklık sistemini güçlendirir, soğuk algınlığı semptomlarını hafifletir.",
+                usage: "Günde 3 fincan içilebilir.",
+                conditions: ["cough", "allergy"]
+            },
+            {
+                id: 7,
+                name: "Melisa ve Papatya Karışımı",
+                type: "mix",
+                image: "images/melisa-papatya.jpg",
+                benefits: "Stres ve kaygıyı azaltır, rahatlatıcı etki sağlar, uykuya yardımcı olur.",
+                usage: "Akşam yatmadan önce 1 fincan içilebilir.",
+                conditions: ["stress", "anxiety", "insomnia"]
+            },
+            {
+                id: 8,
+                name: "Rezene",
+                type: "herb",
+                image: "images/rezene.jpg",
+                benefits: "Sindirim sistemini düzenler, gaz problemlerini giderir.",
+                usage: "Yemeklerden sonra 1 fincan içilebilir.",
+                conditions: ["digestion"]
+            },
+            {
+                id: 9,
+                name: "Kuşburnu",
+                type: "herb",
+                image: "images/kusburnu.jpg",
+                benefits: "C vitamini açısından zengin, bağışıklık güçlendirici, antioksidan etkili.",
+                usage: "Günde 2-3 fincan içilebilir.",
+                conditions: ["cough", "allergy"]
+            },
+            {
+                id: 10,
+                name: "Kekik ve Adaçayı Karışımı",
+                type: "mix",
+                image: "images/kekik-adacayi.jpg",
+                benefits: "Boğaz ağrısını hafifletir, öksürüğe iyi gelir, antiseptik özelliği vardır.",
+                usage: "Günde 2-3 fincan ılık olarak içilebilir.",
+                conditions: ["cough", "digestion"]
+            },
+            {
+                id: 11,
+                name: "Sarı Kantaron",
+                type: "herb",
+                image: "images/sari-kantaron.jpg",
+                benefits: "Depresyon ve kaygıyı azaltır, ruh halini dengeler.",
+                usage: "Günde 2 fincan içilebilir.",
+                conditions: ["anxiety", "stress"]
+            },
+            {
+                id: 12,
+                name: "Zencefil, Limon ve Bal Karışımı",
+                type: "mix",
+                image: "images/zencefil-limon-bal.jpg",
+                benefits: "Soğuk algınlığı semptomlarını hafifletir, bağışıklığı güçlendirir.",
+                usage: "Günde 2-3 fincan sıcak olarak içilebilir.",
+                conditions: ["cough", "allergy"]
+            }
+        ];
+        
+        // Varsayılan verileri localStorage'a kaydet
+        localStorage.setItem('bitkiVerileri', JSON.stringify(defaultHerbs));
+        bitkiVerileri = defaultHerbs;
+    } else {
+        // LocalStorage'dan verileri yükle
+        bitkiVerileri = JSON.parse(storedHerbs);
+    }
     
     // Ana sayfayı göster ve bitkileri listele
     showPage('home');
