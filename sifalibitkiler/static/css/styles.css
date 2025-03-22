@@ -1,0 +1,288 @@
+/* Genel Stiller */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Stilleri */
+.navbar {
+    background-color: #2c3e50;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #ecf0f1 !important;
+}
+
+.nav-link {
+    color: #ecf0f1 !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #3498db !important;
+}
+
+/* Ana İçerik Stilleri */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Buton Stilleri */
+.btn {
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+/* Form Stilleri */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Bitki Kartı Stilleri */
+.plant-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.plant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.plant-card:hover img {
+    transform: scale(1.05);
+}
+
+.plant-card .card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-card .card-title {
+    color: #2c3e50;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.plant-card .card-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.plant-card .btn {
+    width: 100%;
+    margin-top: auto;
+    background-color: #2ecc71;
+    border: none;
+    padding: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.plant-card .btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+/* Tedavi Form Stilleri */
+.treatment-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.treatment-form .form-check {
+    margin-bottom: 10px;
+}
+
+/* Öneri Kartı Stilleri */
+.suggestion-card {
+    height: 100%;
+}
+
+.suggestion-card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.suggestion-card .alert {
+    margin-bottom: 0;
+}
+
+/* Modal Stilleri */
+.modal-content {
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+/* Sayfalama Stilleri */
+.pagination {
+    margin-top: 20px;
+}
+
+.page-link {
+    color: #3498db;
+}
+
+.page-item.active .page-link {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .plant-card img,
+    .suggestion-card img {
+        height: 150px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Özel Sınıflar */
+.text-primary {
+    color: #3498db !important;
+}
+
+.bg-primary {
+    background-color: #3498db !important;
+}
+
+.text-success {
+    color: #2ecc71 !important;
+}
+
+.bg-success {
+    background-color: #2ecc71 !important;
+}
+
+.text-danger {
+    color: #e74c3c !important;
+}
+
+.bg-danger {
+    background-color: #e74c3c !important;
+}
+
+.text-warning {
+    color: #f1c40f !important;
+}
+
+.bg-warning {
+    background-color: #f1c40f !important;
+}
+
+.text-info {
+    color: #3498db !important;
+}
+
+.bg-info {
+    background-color: #3498db !important;
+} 

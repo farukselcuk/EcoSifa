@@ -1,0 +1,78 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            {% if bitki.resim %}
+            <img src="{{ bitki.resim.url }}" class="card-img-top" alt="{{ bitki.isim }}">
+            {% else %}
+            <img src="{% static 'images/default-plant.jpg' %}" class="card-img-top" alt="Varsayılan bitki resmi">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ bitki.isim }}</h5>
+                <p class="card-text">
+                    <span class="badge bg-success">{{ bitki.get_tip_display }}</span>
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'bitki_duzenle' bitki.pk %}" class="btn btn-primary">
+                        <i class="fas fa-edit me-2"></i>Düzenle
+                    </a>
+                    <a href="{% url 'bitki_sil' bitki.pk %}" class="btn btn-danger">
+                        <i class="fas fa-trash me-2"></i>Sil
+                    </a>
+                    <a href="{% url 'bitki_listesi' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Geri Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Bitki Bilgileri</h3>
+                
+                <div class="mb-4">
+                    <h5><i class="fas fa-heart text-danger me-2"></i>Faydaları</h5>
+                    <p class="card-text">{{ bitki.faydalar|linebreaks }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-hand-holding-medical text-success me-2"></i>Kullanım Alanları</h5>
+                    <p class="card-text">{{ bitki.kullanim|linebreaks }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-mortar-pestle text-primary me-2"></i>Hazırlama</h5>
+                    <p class="card-text">{{ bitki.hazirlama|linebreaks }}</p>
+                </div>
+
+                {% if bitki.uyarilar %}
+                <div class="mb-4">
+                    <h5><i class="fas fa-exclamation-triangle text-warning me-2"></i>Uyarılar</h5>
+                    <p class="card-text">{{ bitki.uyarilar|linebreaks }}</p>
+                </div>
+                {% endif %}
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-balance-scale text-info me-2"></i>Doz</h5>
+                    <p class="card-text">{{ bitki.doz }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-notes-medical text-danger me-2"></i>Rahatsızlıklar</h5>
+                    <p class="card-text">{{ bitki.rahatsizliklar|linebreaks }}</p>
+                </div>
+
+                <div class="text-muted">
+                    <small>
+                        <i class="fas fa-clock me-1"></i>Son güncelleme: {{ bitki.guncelleme_tarihi|date:"d.m.Y H:i" }}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

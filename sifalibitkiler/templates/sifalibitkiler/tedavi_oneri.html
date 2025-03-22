@@ -1,0 +1,79 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="text-center">
+                <i class="fas fa-leaf me-2"></i>
+                {{ rahatsizlik.isim }} için Doğal Çözüm Önerileri
+            </h2>
+            <p class="lead text-center">
+                Size özel olarak seçilmiş, {{ rahatsizlik.isim }} rahatsızlığı için faydalı olabilecek bitkiler ve karışımlar.
+            </p>
+        </div>
+    </div>
+
+    {% if bitkiler %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for bitki in bitkiler %}
+        <div class="col">
+            <div class="card h-100">
+                {% if bitki.resim %}
+                <img src="{{ bitki.resim.url }}" class="card-img-top" alt="{{ bitki.isim }}">
+                {% else %}
+                <img src="{% static 'images/default-plant.jpg' %}" class="card-img-top" alt="Varsayılan Bitki Resmi">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ bitki.isim }}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-tag me-2"></i>{{ bitki.get_tip_display }}
+                        </small>
+                    </p>
+                    <p class="card-text">{{ bitki.faydalar|truncatewords:30 }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-mortar-pestle me-2"></i>{{ bitki.hazirlama|truncatewords:20 }}
+                        </small>
+                    </p>
+                    {% if bitki.uyarilar %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Uyarı:</strong> {{ bitki.uyarilar|truncatewords:20 }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'bitki_detay' bitki.pk %}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-info-circle me-2"></i>Detaylı Bilgi
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Bilgi:</strong> Seçtiğiniz kriterlere uygun bitki bulunamadı. Lütfen farklı bir tedavi tipi seçin veya başka bir rahatsızlık için arama yapın.
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="{% url 'tedavi_form' %}" class="btn btn-primary me-2">
+                <i class="fas fa-search me-2"></i>Yeni Arama
+            </a>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-home me-2"></i>Ana Sayfa
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

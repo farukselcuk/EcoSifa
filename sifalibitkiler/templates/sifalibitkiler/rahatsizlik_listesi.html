@@ -1,0 +1,71 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-4 text-center mb-4">Rahatsızlıklar ve Tedavi Yöntemleri</h1>
+            <p class="lead text-center">Doğal tedavi yöntemleri ve şifalı bitkiler hakkında detaylı bilgiler</p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for rahatsizlik in rahatsizliklar %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-3">{{ rahatsizlik.isim }}</h2>
+                    <div class="mb-3">
+                        <h5 class="text-primary">Açıklama</h5>
+                        <p class="card-text">{{ rahatsizlik.aciklama }}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h5 class="text-primary">Belirtiler</h5>
+                        <p class="card-text">{{ rahatsizlik.belirtiler }}</p>
+                    </div>
+
+                    {% if rahatsizlik.risk_faktorleri %}
+                    <div class="mb-3">
+                        <h5 class="text-primary">Risk Faktörleri</h5>
+                        <p class="card-text">{{ rahatsizlik.risk_faktorleri }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if rahatsizlik.onlemler %}
+                    <div class="mb-3">
+                        <h5 class="text-primary">Alınması Gereken Önlemler</h5>
+                        <p class="card-text">{{ rahatsizlik.onlemler }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="mt-3">
+                        <h5 class="text-primary">Önerilen Bitkiler</h5>
+                        <div class="row">
+                            {% for bitki in rahatsizlik.bitki_set.all %}
+                            <div class="col-md-4 mb-2">
+                                <a href="{% url 'bitki_detay' bitki.pk %}" class="btn btn-outline-success btn-sm w-100">
+                                    {{ bitki.isim }}
+                                </a>
+                            </div>
+                            {% empty %}
+                            <div class="col">
+                                <p class="text-muted">Bu rahatsızlık için henüz bitki önerisi eklenmemiş.</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="alert alert-info">
+                Henüz rahatsızlık bilgisi eklenmemiş.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

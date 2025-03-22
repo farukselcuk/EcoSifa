@@ -1,0 +1,48 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="display-4 text-center mb-4">EcoSifaa'ya Hoş Geldiniz</h1>
+            <p class="lead text-center">Doğal tedavi yöntemleri ve şifalı bitkiler hakkında bilgi edinin</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+                    <h3 class="card-title">Şifalı Bitkiler</h3>
+                    <p class="card-text">Doğanın bize sunduğu şifalı bitkileri keşfedin ve faydalarını öğrenin.</p>
+                    <a href="{% url 'bitki_listesi' %}" class="btn btn-success">Bitkileri İncele</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-heartbeat fa-3x text-danger mb-3"></i>
+                    <h3 class="card-title">Rahatsızlıklar</h3>
+                    <p class="card-text">Rahatsızlıklar hakkında detaylı bilgi edinin ve doğal tedavi yöntemlerini öğrenin.</p>
+                    <a href="{% url 'rahatsizlik_listesi' %}" class="btn btn-danger">Rahatsızlıkları İncele</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-clipboard-list fa-3x text-primary mb-3"></i>
+                    <h3 class="card-title">Tedavi Önerileri</h3>
+                    <p class="card-text">Rahatsızlığınıza uygun doğal tedavi yöntemlerini bulun.</p>
+                    <a href="{% url 'tedavi_form' %}" class="btn btn-primary">Tedavi Önerisi Al</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

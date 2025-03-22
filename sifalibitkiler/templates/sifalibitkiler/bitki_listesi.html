@@ -1,0 +1,92 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Bitki Veritabanı</h2>
+    <a href="{% url 'bitki_ekle' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Yeni Bitki Ekle
+    </a>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Bitki ara...">
+            <button class="btn btn-outline-success" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div id="searchResults" class="mt-3"></div>
+    </div>
+    <div class="col-md-6 text-end">
+        <div class="btn-group">
+            <a href="{% url 'bitki_listesi' %}" class="btn btn-outline-success">Tümü</a>
+            <a href="{% url 'bitki_listesi' %}?tip=tek" class="btn btn-outline-success">Tek Bitkiler</a>
+            <a href="{% url 'bitki_listesi' %}?tip=karisim" class="btn btn-outline-success">Karışımlar</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for bitki in bitkiler %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 bitki-card" id="bitki-{{ bitki.id }}">
+            {% if bitki.resim %}
+            <img src="{{ bitki.resim.url }}" class="card-img-top" alt="{{ bitki.isim }}">
+            {% else %}
+            <img src="{% static 'images/default-plant.jpg' %}" class="card-img-top" alt="Varsayılan bitki resmi">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ bitki.isim }}</h5>
+                <p class="card-text">{{ bitki.faydalar|truncatewords:30 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="badge bg-success">{{ bitki.get_tip_display }}</span>
+                    <div class="btn-group">
+                        <a href="{% url 'bitki_detay' bitki.pk %}" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{% url 'bitki_duzenle' bitki.pk %}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'bitki_sil' bitki.pk %}" class="btn btn-sm btn-outline-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            Henüz hiç bitki eklenmemiş. İlk bitkiyi eklemek için "Yeni Bitki Ekle" butonuna tıklayın.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if bitkiler.has_other_pages %}
+<nav aria-label="Sayfalama">
+    <ul class="pagination justify-content-center">
+        {% if bitkiler.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ bitkiler.previous_page_number }}">Önceki</a>
+        </li>
+        {% endif %}
+
+        {% for num in bitkiler.paginator.page_range %}
+        <li class="page-item {% if bitkiler.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+
+        {% if bitkiler.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ bitkiler.next_page_number }}">Sonraki</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %} 

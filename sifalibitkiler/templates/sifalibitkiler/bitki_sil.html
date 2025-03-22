@@ -1,0 +1,54 @@
+{% extends 'sifalibitkiler/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Bitki Sil</h2>
+                
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Dikkat!</strong> Bu bitkiyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.
+                </div>
+
+                <div class="card mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            {% if bitki.resim %}
+                            <img src="{{ bitki.resim.url }}" class="img-fluid rounded-start" alt="{{ bitki.isim }}">
+                            {% else %}
+                            <img src="{% static 'images/default-plant.jpg' %}" class="img-fluid rounded-start" alt="Varsayılan Bitki Resmi">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bitki.isim }}</h5>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="fas fa-tag me-2"></i>{{ bitki.get_tip_display }}
+                                    </small>
+                                </p>
+                                <p class="card-text">{{ bitki.faydalar|truncatewords:30 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-2"></i>Sil
+                        </button>
+                        <a href="{% url 'bitki_detay' bitki.pk %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-2"></i>İptal
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
