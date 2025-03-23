@@ -1,23 +1,184 @@
 /* Genel Stiller */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #4CAF50;
+    --accent-color: #F44336;
+    --text-color: #212121;
+    --background-color: #F5F5F5;
+    --header-bg: #1976D2;
+    --header-text: #FFFFFF;
 }
 
-/* Header Stiller */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--background-color);
+}
+
+/* Navbar Stili */
 .navbar {
+    background-color: var(--header-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
+.logo a {
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: 700;
 }
 
-/* Ana İçerik Stiller */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* Giriş/Kayıt Butonları */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.welcome-text {
+    color: var(--header-text);
+    font-size: 1.1em;
+    margin-right: 1rem;
+}
+
+.login-btn, .register-btn, .logout-btn, .admin-link {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.login-btn {
+    background-color: transparent;
+    color: var(--header-text);
+    border: 2px solid var(--header-text);
+}
+
+.register-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+}
+
+.admin-link {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+}
+
+.logout-btn {
+    background-color: transparent;
+    color: var(--header-text);
+    border: 2px solid var(--header-text);
+}
+
+.login-btn:hover, .logout-btn:hover {
+    background-color: var(--header-text);
+    color: var(--header-bg);
+}
+
+.register-btn:hover {
+    background-color: #43A047;
+}
+
+.admin-link:hover {
+    background-color: #D32F2F;
+}
+
+/* Ana İçerik */
 main {
-    min-height: calc(100vh - 200px);
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .login-btn, .register-btn, .logout-btn, .admin-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Kartlar ve Listeler */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card-title {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-bottom: 1rem;
+}
+
+.card-content {
+    color: var(--text-color);
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Footer */
+footer {
+    background: var(--header-bg);
+    color: var(--header-text);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
 }
 
 /* Kart Stiller */
@@ -113,22 +274,6 @@ main {
     border-color: #28a745;
 }
 
-/* Responsive Tasarım */
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
-    
-    .card {
-        margin-bottom: 1rem;
-    }
-    
-    .btn {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-}
-
 /* Animasyonlar */
 @keyframes fadeIn {
     from {
@@ -143,4 +288,135 @@ main {
 
 .card {
     animation: fadeIn 0.5s ease-out;
+}
+
+/* Giriş/Kayıt Form Stilleri */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 2rem;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card h2 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    outline: none;
+}
+
+.error-message {
+    color: var(--accent-color);
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-submit:hover {
+    background: var(--hover-color);
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.auth-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Mesaj Kutusu Stilleri */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.messages li {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.messages .success {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.messages .error {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+.admin-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    margin-right: 1rem;
+}
+
+.admin-btn:hover {
+    background-color: #D32F2F;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 } 

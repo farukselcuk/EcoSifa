@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EcoSifa - Şifalı Bitkiler{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">EcoSifa</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Ana Sayfa</a></li>
+                <li><a href="/bitkiler/">Bitkiler</a></li>
+                <li><a href="/tedavi/oneri/">Tedavi Önerileri</a></li>
+                <li><a href="/bitki/ekle/">Bitki Ekle</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                    <span class="welcome-text">Hoş geldin, {{ user.username }}</span>
+                    {% if user.is_staff %}
+                        <a href="/admin/" class="admin-btn">Yönetim Paneli</a>
+                    {% endif %}
+                    <a href="/logout/" class="logout-btn">Çıkış Yap</a>
+                {% else %}
+                    <a href="/admin/" class="admin-btn">Yönetici Girişi</a>
+                    <a href="/login/" class="login-btn">Giriş Yap</a>
+                    <a href="/register/" class="register-btn">Kayıt Ol</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EcoSifa. Tüm hakları saklıdır.</p>
+    </footer>
+    <script src="/static/js/script.js"></script>
+</body>
+</html> 

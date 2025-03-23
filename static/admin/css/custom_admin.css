@@ -1,0 +1,423 @@
+/* Admin Panel Genel Stiller */
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #4CAF50;
+    --accent-color: #F44336;
+    --text-color: #212121;
+    --background-color: #F5F5F5;
+    --header-bg: #1976D2;
+    --header-text: #FFFFFF;
+    --sidebar-bg: #FFFFFF;
+    --sidebar-text: #212121;
+    --link-color: #1976D2;
+    --hover-color: #1565C0;
+    --border-color: #E0E0E0;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Admin Panel Layout Düzenlemesi */
+#container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "header header"
+        "sidebar main";
+}
+
+#header {
+    grid-area: header;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--header-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#branding {
+    flex: 1;
+}
+
+#user-tools {
+    margin-left: auto;
+    font-size: 1.1em;
+}
+
+#nav-sidebar {
+    grid-area: sidebar;
+    width: 280px;
+    padding: 2rem 1rem;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    height: calc(100vh - 60px);
+    position: fixed;
+    overflow-y: auto;
+}
+
+#content {
+    grid-area: main;
+    padding: 2rem;
+    background: var(--background-color);
+    min-height: calc(100vh - 60px);
+    margin-left: 280px;
+}
+
+.dashboard #content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.module {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.module h2 {
+    background: var(--primary-color);
+    color: white;
+    padding: 1.2rem;
+    border-radius: 12px 12px 0 0;
+    font-size: 1.4em;
+    margin: 0;
+}
+
+.module table {
+    width: 100%;
+}
+
+.module td, .module th {
+    padding: 1.2rem;
+    font-size: 1.1em;
+}
+
+/* Form Düzenlemesi */
+.form-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Responsive Düzenlemeler */
+@media (max-width: 1200px) {
+    #container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "main";
+    }
+
+    #nav-sidebar {
+        display: none;
+    }
+
+    #content {
+        margin-left: 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablo Düzenlemesi */
+#changelist {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+#changelist-form {
+    width: 100%;
+}
+
+#changelist table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#changelist table thead th {
+    background: var(--primary-color);
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-align: left;
+}
+
+#changelist table tbody td {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1em;
+}
+
+/* Buton ve Link Düzenlemesi */
+.object-tools {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.addlink {
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.addlink:hover {
+    background: var(--hover-color);
+}
+
+/* Breadcrumbs Düzenlemesi */
+.breadcrumbs {
+    background: white;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 1.1em;
+}
+
+/* Sayfalama Düzenlemesi */
+.paginator {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.1em;
+}
+
+.paginator a, .paginator span {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.paginator .this-page {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Arama Formu Düzenlemesi */
+#changelist-search {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#changelist-search input[type="text"] {
+    width: 300px;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+#changelist-search input[type="submit"] {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+/* Form Elemanları */
+.form-row {
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.form-row label {
+    font-size: 1.2em;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(33,150,243,0.2);
+    outline: none;
+}
+
+/* Butonlar */
+.button, 
+input[type=submit], 
+input[type=button], 
+.submit-row input, 
+a.button {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: var(--hover-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tablo Stilleri */
+#result_list {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+#result_list th {
+    background: var(--primary-color);
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+#result_list td {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1em;
+}
+
+#result_list tr:last-child td {
+    border-bottom: none;
+}
+
+#result_list tr:hover {
+    background: #F5F5F5;
+}
+
+/* Başlıklar */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 2em;
+}
+
+/* Linkler */
+a:link, a:visited {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 1.1em;
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+/* Uyarı Mesajları */
+.messagelist li {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.messagelist li.success {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.messagelist li.error {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    #content {
+        padding: 1.2rem;
+    }
+    
+    .form-row {
+        padding: 1.2rem;
+    }
+    
+    #result_list {
+        display: block;
+        overflow-x: auto;
+    }
+} 

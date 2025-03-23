@@ -1,0 +1,189 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('EcoSifa Yönetim') }}{% endblock %}
+
+{% block extrastyle %}
+<style>
+:root {
+    --primary: #2196F3;
+    --secondary: #4CAF50;
+    --accent: #F44336;
+    --primary-fg: #fff;
+    --body-fg: #333;
+    --body-bg: #f5f5f5;
+    --header-color: #fff;
+    --header-branding-color: var(--accent);
+    --header-bg: #1976D2;
+    --header-link-color: #fff;
+    --breadcrumbs-fg: #888;
+    --breadcrumbs-link-fg: var(--body-fg);
+    --breadcrumbs-bg: #fff;
+    --link-fg: #1976D2;
+    --link-hover-color: #1565C0;
+    --link-selected-fg: #1565C0;
+    --hairline-color: #e8e8e8;
+    --border-color: #e8e8e8;
+    --error-fg: #F44336;
+    --message-success-bg: #E8F5E9;
+    --message-warning-bg: #FFF3E0;
+    --message-error-bg: #FFEBEE;
+    --darkened-bg: #f8f8f8;
+    --selected-bg: #e8f0fe;
+    --selected-row: #e8f0fe;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+#header {
+    background: var(--header-bg);
+    color: var(--header-color);
+    padding: 1.5rem 2.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#branding h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--header-color);
+}
+
+.module h2, .module caption {
+    background: var(--primary);
+    color: var(--primary-fg);
+    font-size: 1.4rem;
+    padding: 1.2rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.module {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.submit-row {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover {
+    background: var(--link-hover-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button.default, input[type=submit].default {
+    background: var(--secondary);
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background: #43A047;
+}
+
+#content-related {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+.object-tools a {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    background: var(--secondary);
+}
+
+.object-tools a:hover {
+    background: #43A047;
+}
+
+thead th {
+    background: var(--primary);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+tbody tr td {
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+tbody tr:nth-child(odd) {
+    background: var(--body-bg);
+}
+
+.form-row {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-row label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--body-fg);
+}
+
+input[type=text], input[type=password], input[type=email], textarea, select {
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.help {
+    font-size: 0.9rem;
+    color: var(--breadcrumbs-fg);
+    margin-top: 0.5rem;
+}
+
+.errorlist {
+    color: var(--error-fg);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+#nav-sidebar {
+    background: white;
+    padding: 1.5rem;
+    width: 280px;
+    border-right: 1px solid var(--border-color);
+}
+
+#nav-sidebar .current-model {
+    background: var(--selected-bg);
+    border-radius: 8px;
+}
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">EcoSifa Yönetim Paneli</a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %} 

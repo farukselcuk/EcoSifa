@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Kayıt Ol - EcoSifa{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Kayıt Ol</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Kullanıcı Adı:</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="error-message">
+                    {{ form.username.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_email">E-posta:</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="error-message">
+                    {{ form.email.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password1">Şifre:</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <div class="error-message">
+                    {{ form.password1.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password2">Şifre (Tekrar):</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <div class="error-message">
+                    {{ form.password2.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="auth-submit">Kayıt Ol</button>
+        </form>
+        <div class="auth-links">
+            <p>Zaten hesabınız var mı? <a href="{% url 'login' %}">Giriş Yap</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

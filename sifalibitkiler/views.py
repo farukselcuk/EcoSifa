@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.http import JsonResponse
 from .models import Bitki, Rahatsizlik
 from .forms import BitkiForm, RahatsizlikForm, TedaviForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 def home(request):
     return render(request, 'sifalibitkiler/home.html')
@@ -132,3 +134,15 @@ def rahatsizlik_listesi(request):
     return render(request, 'sifalibitkiler/rahatsizlik_listesi.html', {
         'rahatsizliklar': rahatsizliklar
     })
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Hesabınız başarıyla oluşturuldu!')
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
