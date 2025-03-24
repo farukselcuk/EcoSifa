@@ -12,4 +12,9 @@ urlpatterns = [
     path('tedavi/oneri/', views.tedavi_form, name='tedavi_oneri'),
     path('search/', views.search_bitkiler, name='search_bitkiler'),
     path('rahatsizliklar/', views.rahatsizlik_listesi, name='rahatsizlik_listesi'),
+    path('tedavi-onerileri/', views.tedavi_onerileri, name='tedavi_onerileri'),
+    path('tedavi-onerisi/<int:pk>/', views.tedavi_onerisi_detay, name='tedavi_onerisi_detay'),
+    path('iletisim/', views.iletisim, name='iletisim'),
+    path('hakkimizda/', views.hakkimizda, name='hakkimizda'),
+    path('gizlilik/', views.gizlilik, name='gizlilik'),
 ] 

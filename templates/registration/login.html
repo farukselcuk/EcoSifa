@@ -1,31 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Giriş Yap - EcoSifa{% endblock %}
 
 {% block content %}
-<div class="auth-container">
-    <div class="auth-card">
-        <h2>Giriş Yap</h2>
-        <form method="post">
+<div class="login-container">
+    <div class="login-box">
+        <h2>Yönetici Girişi</h2>
+        {% if form.errors %}
+        <div class="error-message">
+            Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyin.
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="form-group">
-                <label for="id_username">Kullanıcı Adı:</label>
+                <label for="id_username">
+                    <i class="fas fa-user"></i>
+                    Kullanıcı Adı
+                </label>
                 {{ form.username }}
             </div>
             <div class="form-group">
-                <label for="id_password">Şifre:</label>
+                <label for="id_password">
+                    <i class="fas fa-lock"></i>
+                    Şifre
+                </label>
                 {{ form.password }}
             </div>
-            {% if form.errors %}
-            <div class="error-message">
-                Kullanıcı adı veya şifre hatalı.
-            </div>
-            {% endif %}
-            <button type="submit" class="auth-submit">Giriş Yap</button>
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Giriş Yap
+            </button>
+            <input type="hidden" name="next" value="{{ next }}">
         </form>
         <div class="auth-links">
             <p>Hesabınız yok mu? <a href="{% url 'register' %}">Kayıt Ol</a></p>
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

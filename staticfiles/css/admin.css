@@ -1,0 +1,295 @@
+:root {
+    --primary-color: #2e7d32;
+    --secondary-color: #4caf50;
+    --accent-color: #81c784;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --success-color: #43a047;
+    --warning-color: #ffa000;
+    --error-color: #d32f2f;
+}
+
+/* Header Styles */
+#header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#branding h1 {
+    color: #fff;
+    font-weight: 600;
+}
+
+#branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+}
+
+#user-tools {
+    font-size: 0.9rem;
+    padding: 1rem 0;
+}
+
+#user-tools a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#user-tools a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+/* Content Styles */
+#content {
+    padding: 2rem;
+}
+
+.module h2, .module caption {
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 500;
+}
+
+.module {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.form-row {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-row input, .form-row textarea, .form-row select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+}
+
+/* Button Styles */
+.button, input[type=submit], input[type=button] {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--secondary-color);
+}
+
+.button.default {
+    background: var(--success-color);
+}
+
+/* List Styles */
+#changelist table {
+    border: 1px solid #eee;
+}
+
+#changelist table thead th {
+    background: var(--background-color);
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 0.75rem;
+}
+
+#changelist table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+#changelist table tbody tr:hover {
+    background: #f5f5f5;
+}
+
+.paginator {
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.paginator a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+.paginator a:hover {
+    background: var(--background-color);
+}
+
+/* Message Styles */
+.success {
+    background: var(--success-color);
+    color: #fff;
+}
+
+.warning {
+    background: var(--warning-color);
+    color: #fff;
+}
+
+.error {
+    background: var(--error-color);
+    color: #fff;
+}
+
+/* Dashboard Styles */
+.dashboard #content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard .module table th {
+    width: 100%;
+}
+
+.dashboard .module table td {
+    white-space: nowrap;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    #content {
+        padding: 1rem;
+    }
+    
+    .form-row input, .form-row textarea, .form-row select {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    #header {
+        padding: 1rem;
+    }
+    
+    #user-tools {
+        float: none;
+        padding-top: 1rem;
+    }
+}
+
+/* Login Form */
+.login #header {
+    height: auto;
+    padding: 15px;
+}
+
+.login #content {
+    padding: 20px;
+}
+
+.login .form-row {
+    padding: 4px 0;
+}
+
+.login .submit-row {
+    padding: 0;
+    text-align: center;
+}
+
+/* Custom Branding */
+#header {
+    height: auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+}
+
+#branding h1 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 500;
+}
+
+#user-tools {
+    font-size: 14px;
+    margin-left: auto;
+}
+
+/* Tables */
+table thead th {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.row1 {
+    background: #fff;
+}
+
+.row2 {
+    background: #f8f8f8;
+}
+
+/* Links */
+a:link, a:visited {
+    color: var(--primary-color);
+}
+
+.object-tools a:link, .object-tools a:visited {
+    background: var(--secondary-color);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: var(--secondary-color);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: var(--primary-color);
+}
+
+.button.default:hover, input[type=submit].default:hover {
+    background: var(--secondary-color);
+}
+
+/* Form Elements */
+.form-row {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.aligned label {
+    width: 160px;
+    color: #333;
+}
+
+.module {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+}
+
+/* Messages */
+.success {
+    background: var(--accent-color);
+}

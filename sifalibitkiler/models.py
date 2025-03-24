@@ -9,8 +9,8 @@ class Rahatsizlik(djongo_models.Model):
     isim = djongo_models.CharField(max_length=100, unique=True)
     aciklama = djongo_models.TextField(blank=True)
     belirtiler = djongo_models.TextField(help_text="Rahatsızlığın belirtilerini yazın", blank=True)
-    risk_faktorleri = models.TextField(help_text="Risk faktörlerini yazın", blank=True)
-    onlemler = models.TextField(help_text="Alınması gereken önlemleri yazın", blank=True)
+    risk_faktorleri = djongo_models.TextField(help_text="Risk faktörlerini yazın", blank=True)
+    onlemler = djongo_models.TextField(help_text="Alınması gereken önlemleri yazın", blank=True)
     olusturulma_tarihi = djongo_models.DateTimeField(default=timezone.now)
     guncellenme_tarihi = djongo_models.DateTimeField(auto_now=True)
     
@@ -60,11 +60,11 @@ class Bitki(djongo_models.Model):
         ('diger', 'Diğer')
     ])
     resim = djongo_models.ImageField(upload_to='bitkiler/', blank=True, null=True)
-    faydalar = models.TextField()
-    kullanim = models.TextField()
-    hazirlama = models.TextField()
-    uyarilar = models.TextField(blank=True)
-    doz = models.TextField(blank=True)
+    faydalar = djongo_models.TextField()
+    kullanim = djongo_models.TextField()
+    hazirlama = djongo_models.TextField()
+    uyarilar = djongo_models.TextField(blank=True)
+    doz = djongo_models.TextField(blank=True)
     rahatsizliklar = djongo_models.ManyToManyField(Rahatsizlik, related_name='bitkiler')
     olusturulma_tarihi = djongo_models.DateTimeField(default=timezone.now)
     guncellenme_tarihi = djongo_models.DateTimeField(auto_now=True)
@@ -72,11 +72,11 @@ class Bitki(djongo_models.Model):
     # Ek bilgiler
     etiketler = djongo_models.TextField(blank=True)
     mevsim = djongo_models.TextField(blank=True)
-    yan_etkiler = models.TextField(blank=True, help_text="Yan etkileri virgülle ayırarak yazın")
-    kontrendikasyonlar = models.TextField(blank=True, help_text="Kontrendikasyonları virgülle ayırarak yazın")
-    saklama_kosullari = models.TextField(blank=True)
-    raf_omru = models.CharField(max_length=50, blank=True)
-    kaynak = models.CharField(max_length=200, blank=True)
+    yan_etkiler = djongo_models.TextField(blank=True, help_text="Yan etkileri virgülle ayırarak yazın")
+    kontrendikasyonlar = djongo_models.TextField(blank=True, help_text="Kontrendikasyonları virgülle ayırarak yazın")
+    saklama_kosullari = djongo_models.TextField(blank=True)
+    raf_omru = djongo_models.CharField(max_length=50, blank=True)
+    kaynak = djongo_models.CharField(max_length=200, blank=True)
     bilimsel_ad = djongo_models.CharField(max_length=100, blank=True)
     aile = djongo_models.CharField(max_length=100, blank=True)
     cins = djongo_models.CharField(max_length=100, blank=True)
@@ -116,3 +116,18 @@ class Bitki(djongo_models.Model):
     def set_kontrendikasyonlar_list(self, kontrendikasyonlar_list):
         """Kontrendikasyonlar listesini string olarak kaydeder"""
         self.kontrendikasyonlar = ', '.join(kontrendikasyonlar_list)
+
+class TedaviOnerisi(djongo_models.Model):
+    bitki = djongo_models.ForeignKey(Bitki, on_delete=djongo_models.CASCADE, related_name='tedavi_onerileri')
+    rahatsizlik = djongo_models.ForeignKey(Rahatsizlik, on_delete=djongo_models.CASCADE, related_name='tedavi_onerileri')
+    aciklama = djongo_models.TextField()
+    olusturulma_tarihi = djongo_models.DateTimeField(default=timezone.now)
+    guncellenme_tarihi = djongo_models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Tedavi Önerisi'
+        verbose_name_plural = 'Tedavi Önerileri'
+        ordering = ['-olusturulma_tarihi']
+
+    def __str__(self):
+        return f"{self.rahatsizlik.isim} - {self.bitki.isim}"

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}EcoSifaa - Ana Sayfa{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>EcoSifaa'ya Hoş Geldiniz</h1>
+    <p class="subtitle">Doğal tedavi yöntemleri ve şifalı bitkiler hakkında bilgi edinin</p>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/leaf-icon.svg" alt="Şifalı Bitkiler">
+        </div>
+        <h2>Şifalı Bitkiler</h2>
+        <p>Doğanın bize sunduğu şifalı bitkileri keşfedin ve faydalarını öğrenin.</p>
+        <a href="{% url 'bitkiler' %}" class="feature-button green">Bitkileri İncele</a>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/heart-icon.svg" alt="Rahatsızlıklar">
+        </div>
+        <h2>Rahatsızlıklar</h2>
+        <p>Rahatsızlıklar hakkında detaylı bilgi edinin ve doğal tedavi yöntemlerini öğrenin.</p>
+        <a href="{% url 'rahatsizliklar' %}" class="feature-button red">Rahatsızlıkları İncele</a>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/clipboard-icon.svg" alt="Tedavi Önerileri">
+        </div>
+        <h2>Tedavi Önerileri</h2>
+        <p>Rahatsızlığınıza uygun doğal tedavi yöntemlerini bulun.</p>
+        <a href="{% url 'tedavi_oneri' %}" class="feature-button blue">Tedavi Önerisi Al</a>
+    </div>
+</div>
+{% endblock %} 

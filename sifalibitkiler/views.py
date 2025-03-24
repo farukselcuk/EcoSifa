@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import JsonResponse
-from .models import Bitki, Rahatsizlik
+from .models import Bitki, Rahatsizlik, TedaviOnerisi
 from .forms import BitkiForm, RahatsizlikForm, TedaviForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -146,3 +146,32 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+def iletisim(request):
+    if request.method == 'POST':
+        # Form verilerini al
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Burada e-posta gönderme işlemi yapılabilir
+        # Şimdilik sadece başarılı mesajı gösterelim
+        messages.success(request, 'Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.')
+        return redirect('iletisim')
+    
+    return render(request, 'iletisim.html')
+
+def tedavi_onerileri(request):
+    oneriler = TedaviOnerisi.objects.all().order_by('-olusturulma_tarihi')
+    return render(request, 'tedavi_onerileri.html', {'oneriler': oneriler})
+
+def tedavi_onerisi_detay(request, pk):
+    oneri = get_object_or_404(TedaviOnerisi, pk=pk)
+    return render(request, 'tedavi_onerisi_detay.html', {'oneri': oneri})
+
+def hakkimizda(request):
+    return render(request, 'hakkimizda.html')
+
+def gizlilik(request):
+    return render(request, 'gizlilik.html')

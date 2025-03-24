@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="tedavi-oneri-detay">
+        <div class="oneri-header">
+            <h1>{{ oneri.bitki.isim }}</h1>
+            <p class="rahatsizlik">Rahatsızlık: {{ oneri.rahatsizlik.isim }}</p>
+        </div>
+
+        <div class="oneri-content">
+            <div class="bitki-bilgileri">
+                <h2>Bitki Bilgileri</h2>
+                <p><strong>Bilimsel Ad:</strong> {{ oneri.bitki.bilimsel_ad }}</p>
+                <p><strong>Tip:</strong> {{ oneri.bitki.tip }}</p>
+                <p><strong>Faydaları:</strong> {{ oneri.bitki.faydalari }}</p>
+                <p><strong>Kullanım:</strong> {{ oneri.bitki.kullanim }}</p>
+                {% if oneri.bitki.yan_etkiler %}
+                <p><strong>Yan Etkiler:</strong> {{ oneri.bitki.yan_etkiler }}</p>
+                {% endif %}
+                {% if oneri.bitki.kontrendikasyonlar %}
+                <p><strong>Kontrendikasyonlar:</strong> {{ oneri.bitki.kontrendikasyonlar }}</p>
+                {% endif %}
+            </div>
+
+            <div class="tedavi-aciklama">
+                <h2>Tedavi Önerisi</h2>
+                <p>{{ oneri.aciklama }}</p>
+            </div>
+
+            <div class="rahatsizlik-bilgileri">
+                <h2>Rahatsızlık Bilgileri</h2>
+                <p><strong>Seviye:</strong> {{ oneri.rahatsizlik.seviye }}</p>
+                <p><strong>Yaygınlık:</strong> {{ oneri.rahatsizlik.yayginlik }}</p>
+                <p><strong>Belirtiler:</strong> {{ oneri.rahatsizlik.belirtiler }}</p>
+                {% if oneri.rahatsizlik.risk_faktorleri %}
+                <p><strong>Risk Faktörleri:</strong> {{ oneri.rahatsizlik.risk_faktorleri }}</p>
+                {% endif %}
+                {% if oneri.rahatsizlik.onlemler %}
+                <p><strong>Önlemler:</strong> {{ oneri.rahatsizlik.onlemler }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="oneri-meta">
+            <p class="tarih">Oluşturulma Tarihi: {{ oneri.olusturulma_tarihi|date:"d.m.Y H:i" }}</p>
+            <a href="{% url 'tedavi_onerileri' %}" class="btn btn-secondary">Tüm Önerilere Dön</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,17 +1,13 @@
 /* Admin Panel Genel Stiller */
 :root {
-    --primary-color: #2196F3;
-    --secondary-color: #4CAF50;
-    --accent-color: #F44336;
-    --text-color: #212121;
+    --primary-color: #2E7D32;
+    --secondary-color: #1976D2;
+    --accent-color: #D32F2F;
+    --text-color: #333333;
     --background-color: #F5F5F5;
-    --header-bg: #1976D2;
-    --header-text: #FFFFFF;
-    --sidebar-bg: #FFFFFF;
-    --sidebar-text: #212121;
-    --link-color: #1976D2;
-    --hover-color: #1565C0;
-    --border-color: #E0E0E0;
+    --card-background: #FFFFFF;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
 }
 
 body {
@@ -33,12 +29,13 @@ body {
 
 #header {
     grid-area: header;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--header-bg);
+    background: var(--primary-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: white;
 }
 
 #branding {
@@ -53,12 +50,14 @@ body {
 #nav-sidebar {
     grid-area: sidebar;
     width: 280px;
-    padding: 2rem 1rem;
-    background: var(--sidebar-bg);
+    padding: 1rem;
+    background: var(--card-background);
     border-right: 1px solid var(--border-color);
     height: calc(100vh - 60px);
     position: fixed;
     overflow-y: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 #content {
@@ -77,21 +76,19 @@ body {
 }
 
 .module {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color);
-    margin-bottom: 0;
-    width: 100%;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
 }
 
 .module h2 {
-    background: var(--primary-color);
-    color: white;
-    padding: 1.2rem;
-    border-radius: 12px 12px 0 0;
-    font-size: 1.4em;
-    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .module table {
@@ -112,10 +109,37 @@ body {
 }
 
 .form-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1.5rem;
-    align-items: start;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row:last-child {
+    border-bottom: none;
+}
+
+.form-row label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="email"],
+.form-row textarea,
+.form-row select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    outline: none;
 }
 
 /* Responsive Düzenlemeler */
@@ -200,12 +224,13 @@ body {
 
 /* Breadcrumbs Düzenlemesi */
 .breadcrumbs {
-    background: white;
+    background: var(--secondary-color);
     padding: 1rem 2rem;
-    margin-bottom: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    font-size: 1.1em;
+    color: white;
+}
+
+div.breadcrumbs a:link, div.breadcrumbs a:visited {
+    color: white;
 }
 
 /* Sayfalama Düzenlemesi */
@@ -257,105 +282,27 @@ body {
     margin-left: 1rem;
 }
 
-/* Form Elemanları */
-.form-row {
-    padding: 1.8rem;
-    margin-bottom: 1.8rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color);
-}
-
-.form-row label {
-    font-size: 1.2em;
-    color: var(--text-color);
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-    display: block;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1.1em;
-    transition: all 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(33,150,243,0.2);
-    outline: none;
-}
-
-/* Butonlar */
-.button, 
-input[type=submit], 
-input[type=button], 
-.submit-row input, 
-a.button {
-    background: var(--primary-color);
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1em;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.button:hover,
-input[type=submit]:hover,
-input[type=button]:hover,
-.submit-row input:hover,
-a.button:hover {
-    background: var(--hover-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 /* Tablo Stilleri */
 #result_list {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color);
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
 #result_list th {
     background: var(--primary-color);
     color: white;
-    padding: 1.2rem;
-    font-size: 1.2em;
-    font-weight: 500;
+    padding: 1rem;
+    text-align: left;
 }
 
 #result_list td {
-    padding: 1.2rem;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 1.1em;
-}
-
-#result_list tr:last-child td {
-    border-bottom: none;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
 }
 
 #result_list tr:hover {
-    background: #F5F5F5;
+    background-color: rgba(46, 125, 50, 0.05);
 }
 
 /* Başlıklar */
@@ -388,12 +335,10 @@ a:hover {
 
 /* Uyarı Mesajları */
 .messagelist li {
-    padding: 1.2rem;
-    margin-bottom: 1.2rem;
-    border-radius: 8px;
-    font-size: 1.2em;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
 }
 
 .messagelist li.success {
@@ -408,12 +353,16 @@ a:hover {
 
 /* Responsive Tasarım */
 @media (max-width: 768px) {
-    #content {
-        padding: 1.2rem;
+    #header, div.breadcrumbs {
+        padding: 1rem;
     }
     
-    .form-row {
-        padding: 1.2rem;
+    #content {
+        padding: 1rem;
+    }
+    
+    .module {
+        padding: 1rem;
     }
     
     #result_list {

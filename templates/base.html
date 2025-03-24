@@ -1,36 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}EcoSifa - Şifalı Bitkiler{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>EcoSifaa - Şifalı Bitkiler</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/logo.svg' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="/">EcoSifa</a>
+                <a href="/">
+                    <img src="{% static 'images/logo.svg' %}" alt="EcoSifaa Logo">
+                    <span class="logo-text">EcoSifaa</span>
+                </a>
             </div>
             <ul class="nav-links">
-                <li><a href="/">Ana Sayfa</a></li>
-                <li><a href="/bitkiler/">Bitkiler</a></li>
-                <li><a href="/tedavi/oneri/">Tedavi Önerileri</a></li>
-                <li><a href="/bitki/ekle/">Bitki Ekle</a></li>
+                <li><a href="/" {% if request.path == '/' %}class="active"{% endif %}>Ana Sayfa</a></li>
+                <li><a href="{% url 'bitki_listesi' %}" {% if 'bitkiler' in request.path %}class="active"{% endif %}>Bitki Veritabanı</a></li>
+                <li><a href="{% url 'tedavi_form' %}" {% if 'tedavi' in request.path %}class="active"{% endif %}>Tedavi Önerisi</a></li>
             </ul>
             <div class="auth-buttons">
-                {% if user.is_authenticated %}
-                    <span class="welcome-text">Hoş geldin, {{ user.username }}</span>
-                    {% if user.is_staff %}
-                        <a href="/admin/" class="admin-btn">Yönetim Paneli</a>
-                    {% endif %}
-                    <a href="/logout/" class="logout-btn">Çıkış Yap</a>
-                {% else %}
-                    <a href="/admin/" class="admin-btn">Yönetici Girişi</a>
-                    <a href="/login/" class="login-btn">Giriş Yap</a>
-                    <a href="/register/" class="register-btn">Kayıt Ol</a>
-                {% endif %}
+                <a href="/admin/" class="admin-btn"><i class="fas fa-user"></i> Yönetici Girişi</a>
             </div>
         </nav>
     </header>
@@ -40,9 +36,34 @@
         {% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2024 EcoSifa. Tüm hakları saklıdır.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EcoSifaa</h3>
+                <p>Doğal şifalı bitkiler ve tedavi yöntemleri hakkında güvenilir bilgiler.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <ul>
+                    <li><a href="{% url 'bitki_listesi' %}">Şifalı Bitkiler</a></li>
+                    <li><a href="{% url 'rahatsizlik_listesi' %}">Rahatsızlıklar</a></li>
+                    <li><a href="{% url 'tedavi_form' %}">Tedavi Önerileri</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <ul>
+                    <li><a href="{% url 'iletisim' %}">İletişim</a></li>
+                    <li><a href="{% url 'hakkimizda' %}">Hakkımızda</a></li>
+                    <li><a href="{% url 'gizlilik' %}">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EcoSifaa. Tüm hakları saklıdır.</p>
+        </div>
     </footer>
-    <script src="/static/js/script.js"></script>
+
+    {% block extra_js %}{% endblock %}
 </body>
-</html> 
+</html>

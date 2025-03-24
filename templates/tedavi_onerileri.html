@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="tedavi-onerileri">
+        <h1>Tedavi Önerileri</h1>
+        
+        <div class="oneriler-grid">
+            {% for oneri in oneriler %}
+            <div class="oneri-card">
+                <h2>{{ oneri.bitki.isim }}</h2>
+                <p class="rahatsizlik">Rahatsızlık: {{ oneri.rahatsizlik.isim }}</p>
+                <p class="aciklama">{{ oneri.aciklama|truncatewords:30 }}</p>
+                <div class="oneri-meta">
+                    <span class="tarih">{{ oneri.olusturulma_tarihi|date:"d.m.Y" }}</span>
+                    <a href="{% url 'tedavi_onerisi_detay' oneri.pk %}" class="btn btn-primary">Detaylar</a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-content">Henüz tedavi önerisi bulunmamaktadır.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

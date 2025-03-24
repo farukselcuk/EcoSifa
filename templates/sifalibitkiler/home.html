@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>EcoSifaa'ya Hoş Geldiniz</h1>
+    <p class="subtitle">Şifalı bitkiler ve doğal tedavi yöntemleri hakkında güvenilir bilgi kaynağınız</p>
+</div>
+
+<div class="about-summary">
+    <div class="about-container">
+        <div class="about-text">
+            <h2>Hakkımızda</h2>
+            <p>EcoSifaa, şifalı bitkiler ve doğal tedavi yöntemleri konusunda güvenilir bilgi sunan bir platformdur. Amacımız, geleneksel tıbbi bitki bilgilerini modern bilimsel verilerle birleştirerek, insanların sağlıklı bir yaşam sürmelerine yardımcı olmaktır.</p>
+            <p>Uzman ekibimiz, bitkilerin faydaları, kullanım şekilleri ve olası yan etkileri hakkında kapsamlı ve doğru bilgiler sunmaktadır. Çeşitli rahatsızlıklar için önerilen bitkisel tedaviler konusunda rehberlik ediyor, sağlıklı yaşam için doğal çözümler sunuyoruz.</p>
+            <div class="about-button-container">
+                <a href="{% url 'hakkimizda' %}" class="about-button">Detaylı Bilgi</a>
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="/static/images/about-image.jpg" alt="EcoSifaa Hakkında">
+        </div>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/plant-icon.png" alt="Şifalı Bitkiler">
+        </div>
+        <h2>Şifalı Bitkiler</h2>
+        <p>Yüzlerce şifalı bitkiyi keşfedin. Özellikleri, kullanım şekilleri ve faydaları hakkında detaylı bilgiler edinebilirsiniz.</p>
+        <a href="{% url 'bitki_listesi' %}" class="feature-button green">Bitkileri Keşfet</a>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/health-icon.png" alt="Rahatsızlıklar">
+        </div>
+        <h2>Rahatsızlıklar</h2>
+        <p>Çeşitli rahatsızlıklar için doğal tedavi yöntemlerini öğrenin. Her bir rahatsızlık için önerilen şifalı bitkileri bulabilirsiniz.</p>
+        <a href="{% url 'rahatsizlik_listesi' %}" class="feature-button red">Rahatsızlıkları Gör</a>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">
+            <img src="/static/images/recipe-icon.png" alt="Tedavi Önerileri">
+        </div>
+        <h2>Tedavi Önerileri</h2>
+        <p>Uzmanlarımız tarafından önerilen tedavi yöntemlerini inceleyin. Şifalı bitkilerin nasıl kullanılacağı hakkında bilgi edinin.</p>
+        <a href="{% url 'tedavi_onerileri' %}" class="feature-button blue">Önerileri İncele</a>
+    </div>
+</div>
+
+<div class="quick-contact">
+    <div class="contact-container">
+        <div class="contact-header">
+            <h2>Bizimle İletişime Geçin</h2>
+            <p>Sorularınız veya önerileriniz için bizimle iletişime geçebilirsiniz.</p>
+        </div>
+        
+        <div class="quick-contact-info">
+            <div class="contact-box">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-details">
+                    <h3>E-posta</h3>
+                    <p>info@ecosifaa.com</p>
+                </div>
+            </div>
+            
+            <div class="contact-box">
+                <i class="fas fa-phone"></i>
+                <div class="contact-details">
+                    <h3>Telefon</h3>
+                    <p>+90 (555) 123 45 67</p>
+                </div>
+            </div>
+            
+            <div class="contact-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-details">
+                    <h3>Adres</h3>
+                    <p>İstanbul, Türkiye</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-button-container">
+            <a href="{% url 'iletisim' %}" class="contact-button">İletişim Sayfası</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 
